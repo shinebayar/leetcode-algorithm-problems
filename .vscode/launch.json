@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\AddTwoNumbersList.js"
+            "program": "${workspaceFolder}\\PalindromeNumber.js"
         }
     ]
 }
