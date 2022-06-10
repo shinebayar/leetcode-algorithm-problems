@@ -14,6 +14,7 @@ var lengthOfLongestSubstring = function(s) {
         max_len = Math.max(max_len, curr);
         hash[s[i]] = i; //save the index
     }
+    console.log(max_len)
     return max_len;
 };
 
