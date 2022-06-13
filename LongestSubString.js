@@ -1,48 +1,48 @@
+// 3. Longest Substring Without Repeating Characters
+
+// Given a string s, find the length of the longest substring without repeating characters.
+
+ // Example 1:
+
+// Input: s = "abcabcbb"
+// Output: 3
+// Explanation: The answer is "abc", with the length of 3.
+// Example 2:
+
+// Input: s = "bbbbb"
+// Output: 1
+// Explanation: The answer is "b", with the length of 1.
+// Example 3:
+
+// Input: s = "pwwkew"
+// Output: 3
+// Explanation: The answer is "wke", with the length of 3.
+// Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+ 
+
+// Constraints:
+
+// 0 <= s.length <= 5 * 104
+// s consists of English letters, digits, symbols and spaces.
+
 const LongestSubstring = s => {
-    let answer = []
-    for(let i=0; i<s.length; i ++){
-        if( s.charAt(i) !== s.charAt(i+1) & s.charAt(i+1) !=='' ){
-            answer[i] = []
-            answer[i].push(s.charAt(i))
-            for(let j=(i+1); j<s.length-i; j++){
-                answer[i].push(s.charAt(j))
-            }
+
+    let max = 0
+    let begin = 0
+    let map = {}
+    
+    for(let end=0; end<s.length; end++){
+        if(map[s[end]] !== undefined && map[s[end]] >= begin){
+            begin = map[s[end]] + 1
         }
-        // answer.push(s.charAt(i))
-        // console.log(answer)
-        // if(answer[s.charAt(i)] === undefined) answer[s.charAt(i)] = 0
-        // answer[s.charAt(i)] = answer[s.charAt(i)] + 1
-        // console.log(s.charAt(i))
+
+        map[s[end]] = end
+        max = Math.max(max, end - begin + 1)
     }
 
-    // [[1,2,3], [4,5,6]]
-
-    console.log(answer)
-
-    // let ans = 0;
-    // for(key in answer){
-    //     if(ans < answer[key]) ans = answer[key]
-    // }
-    
-    // console.log(answer)
-    // console.log(typeof(answer))
-    // console.log(answer.a)
-    // console.log(answer.s)
-    // console.log(answer.length)
-    // console.log(ans)
-
-    return answer
+    return max
 }
 
-LongestSubstring('abcab')
-// LongestSubstring('pwwkew')
-
-// let counter = (str) => {
-//   return str.split("").reduce((total, letter) => {
-//     total[letter] ? total[letter]++ : (total[letter] = 1);
-//     console.log((total))
-//     return total;
-//   }, {});
-// };
-
-// counter("aabsssd");
+// LongestSubstring('bbbbb')
+LongestSubstring('pwwkew')
+// LongestSubstring('abcabcbb')

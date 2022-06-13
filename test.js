@@ -1,21 +1,22 @@
-var lengthOfLongestSubstring = function(s) {
-    let max_len = 0;
-    let curr = 0;
-    let hash = {}; 
-    if(s.length < 2) {
-        return s.length;
+function maxSum( arr, n, k){
+    // Initialize result
+    let max_sum = Number.MIN_VALUE;
+ 
+    // Consider all blocks starting with i.
+    for (let i = 0; i < n - k + 1; i++) {
+        let current_sum = 0;
+        for (let j = 0; j < k; j++)
+            current_sum = current_sum + arr[i + j];
+ 
+        // Update result if required.
+        max_sum = Math.max(current_sum, max_sum);
     }
-    for(let i = 0; i < s.length;  i++) {
-        if(hash[s[i]] == null) {
-            curr += 1;
-        } else {
-            curr = Math.min(i - hash[s[i]], curr + 1);
-        }
-        max_len = Math.max(max_len, curr);
-        hash[s[i]] = i; //save the index
-    }
-    console.log(max_len)
-    return max_len;
-};
-
-lengthOfLongestSubstring('abcac')
+ 
+    return max_sum;
+}
+ 
+// Driver code
+let arr = [ 1, 4, 2, 10, 2, 3, 1, 0, 20 ];
+let k = 4;
+let n = arr.length;
+maxSum(arr, n, k);
