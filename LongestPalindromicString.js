@@ -21,34 +21,30 @@
 
 
 var longestPalindrome = function(s) {
-    const start = Date.now()
+    if(s.length<2) return s
 
-    let substrings = []
+    let start = 0
+    let maxLen = 1
+
+    function expandAroundCenter(left, right){
+        while(s[left] === s[right] && left >=0 && right < s.length){
+            if(right - left + 1 > maxLen){
+                start = left
+                maxLen = right - left +1
+            }
+            left -= 1
+            right += 1
+        }
+    }
 
     for(let i=0; i<s.length; i++){
-        for(let j=i+1; j<s.length+1; j++){
-            substrings.push(s.slice(i,j))
-        }
+        expandAroundCenter(i-1, i+1)
+        expandAroundCenter(i, i+1)
     }
 
-    let ans = ''
-    let pre_length = 0
+    return s.substring(start, start+maxLen)
+}
 
-    for(let i=0; i<substrings.length; i++){
-        if(substrings[i] === substrings[i].split('').reverse().join('')){
-            if(substrings[i].length > pre_length){
-                ans = substrings[i]
-                pre_length = substrings[i].length
-            }
-        }
-    }
-
-    console.log(substrings)
-    console.log(ans)
-
-    console.log('Elapsed second: ', Math.floor((Date.now()-start)/1000))
-    return ans
-};
-
+// longestPalindrome('babad')
 // longestPalindrome('cbbd')
 longestPalindrome("zudfweormatjycujjirzjpyrmaxurectxrtqedmmgergwdvjmjtstdhcihacqnothgttgqfywcpgnuvwglvfiuxteopoyizgehkwuvvkqxbnufkcbodlhdmbqyghkojrgokpwdhtdrwmvdegwycecrgjvuexlguayzcammupgeskrvpthrmwqaqsdcgycdupykppiyhwzwcplivjnnvwhqkkxildtyjltklcokcrgqnnwzzeuqioyahqpuskkpbxhvzvqyhlegmoviogzwuiqahiouhnecjwysmtarjjdjqdrkljawzasriouuiqkcwwqsxifbndjmyprdozhwaoibpqrthpcjphgsfbeqrqqoqiqqdicvybzxhklehzzapbvcyleljawowluqgxxwlrymzojshlwkmzwpixgfjljkmwdtjeabgyrpbqyyykmoaqdambpkyyvukalbrzoyoufjqeftniddsfqnilxlplselqatdgjziphvrbokofvuerpsvqmzakbyzxtxvyanvjpfyvyiivqusfrsufjanmfibgrkwtiuoykiavpbqeyfsuteuxxjiyxvlvgmehycdvxdorpepmsinvmyzeqeiikajopqedyopirmhymozernxzaueljjrhcsofwyddkpnvcvzixdjknikyhzmstvbducjcoyoeoaqruuewclzqqqxzpgykrkygxnmlsrjudoaejxkipkgmcoqtxhelvsizgdwdyjwuumazxfstoaxeqqxoqezakdqjwpkrbldpcbbxexquqrznavcrprnydufsidakvrpuzgfisdxreldbqfizngtrilnbqboxwmwienlkmmiuifrvytukcqcpeqdwwucymgvyrektsnfijdcdoawbcwkkjkqwzffnuqituihjaklvthulmcjrhqcyzvekzqlxgddjoir")
