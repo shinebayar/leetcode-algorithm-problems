@@ -1,22 +1,8 @@
-function maxSum( arr, n, k){
-    // Initialize result
-    let max_sum = Number.MIN_VALUE;
- 
-    // Consider all blocks starting with i.
-    for (let i = 0; i < n - k + 1; i++) {
-        let current_sum = 0;
-        for (let j = 0; j < k; j++)
-            current_sum = current_sum + arr[i + j];
- 
-        // Update result if required.
-        max_sum = Math.max(current_sum, max_sum);
-    }
- 
-    return max_sum;
+function recursive(x){
+    if(x == 0)
+    return 0
+    recursive( x - 1 )
+
 }
- 
-// Driver code
-let arr = [ 1, 4, 2, 10, 2, 3, 1, 0, 20 ];
-let k = 4;
-let n = arr.length;
-maxSum(arr, n, k);
+
+recursive(2)
