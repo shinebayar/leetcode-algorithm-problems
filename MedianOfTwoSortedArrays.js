@@ -47,3 +47,6 @@ var findMedianSortedArrays = function(nums1, nums2) {
 };
 
 findMedianSortedArrays([3], [-2,-1])
+
+// #array #binary-search #divide-and-conquer
+// @hard
