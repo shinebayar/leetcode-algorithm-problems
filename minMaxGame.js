@@ -1,3 +1,5 @@
+
+
 var minMaxGame = function(nums) {
     while(nums.length > 1){
         let isMin = true
