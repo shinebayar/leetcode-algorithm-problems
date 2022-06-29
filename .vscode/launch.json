@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\RemoveDuplicateFromSortedArray.js"
+            "program": "${workspaceFolder}\\ImplementStr.js"
         }
     ]
 }
