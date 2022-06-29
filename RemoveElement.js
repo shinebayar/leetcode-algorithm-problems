@@ -59,7 +59,7 @@ var removeElement = function(nums, val) {
             index ++
         }
     }
-    
+
     return index
 };
 
