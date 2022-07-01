@@ -41,6 +41,7 @@ var addBinary = function(a, b) {
 console.log(addBinary('11', '1'))
 
 /* 
+There are only two incidences that flip carry
 a b carry => sum new_carry
 0 0 0     => 0   0
 0 0 1     => 1   0  -> flip carry
