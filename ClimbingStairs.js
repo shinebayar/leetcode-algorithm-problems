@@ -28,7 +28,16 @@
 // 1 <= n <= 45
 
 var climbStairs = function(n) {
+    let one = 1
+    let two = 1
     
+    for(let i=1; i<n; i++){
+        temp = one
+        one = one + two
+        two = temp
+    }
+    console.log(one)
+    return one
 };
 
 console.log(climbStairs(3))
