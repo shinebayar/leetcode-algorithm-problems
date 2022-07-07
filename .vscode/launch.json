@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\Sqrt(x).js"
+            "program": "${workspaceFolder}\\BinaryTreeInorderTraversal.js"
         }
     ]
 }
