@@ -25,6 +25,20 @@
 // Follow up: Could you solve it both recursively and iteratively?
 
 var isSymmetric = function(root) {
-    
+    if(root === null) return true
+
+    return isSame(root.left, root.right)
 };
 
+const isSame = (tree1, tree2) => {
+    if(tree1 === null || tree2 === null) return tree1 === tree2
+
+    if(tree1.val !== tree2.val) return false
+
+    return isSame(tree1.left, tree2.right) && isSame(tree1.right, tree2.left)
+}
+
+isSymmetric([1,2,2,3,4,4,3])
+
+// #tree #depth-first-search #breadth-first-search #binary-tree
+// @easy
