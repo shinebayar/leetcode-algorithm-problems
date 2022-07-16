@@ -42,3 +42,91 @@ isSymmetric([1,2,2,3,4,4,3])
 
 // #tree #depth-first-search #breadth-first-search #binary-tree
 // @easy
+
+
+
+
+
+// Binary search tree
+class Node{
+    constructor(val){
+        this.val = val
+        this.left = null
+        this.right = null
+    }
+}
+
+class BST{
+    constructor(val){
+        this.root = new Node(val)
+        this.count = 0
+    }
+
+    size(){
+        return this.count
+    }
+
+    insert(val){
+        this.count++
+
+        let newNode = new Node(val)
+
+        const searchTree = node => {
+            // if value < node.val, go left
+            if(val < node.val){
+                // if no left child, append new node
+                if(!node.left){
+                    node.left = newNode
+                // if left child, look left again 
+                }else{
+                    searchTree(node.left)
+                }
+            }
+
+            // if value > node.val, go right
+            else if(val > node.val){
+                // if no right child, append new node
+                if(!node.right){
+                    node.right = newNode
+                }
+                // if right child, look right again
+                else{
+                    searchTree(node.right)   
+                }
+            }
+        }
+    }
+
+    min(){
+
+    }
+
+    max(){
+        
+    }
+
+    contains(){
+
+    }
+
+    // depth first search
+    
+    // in-order
+    dfsInOrder(){
+
+    }
+    
+    // pre-order
+    dfsPreOrder(){
+
+    }
+
+    // post-order
+    dfsPostOrder(){
+
+    }
+
+
+
+    // breadth first search
+}
