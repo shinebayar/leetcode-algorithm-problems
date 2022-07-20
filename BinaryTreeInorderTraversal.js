@@ -45,12 +45,60 @@ var inorderTraversal = function(root) {
 console.log(inorderTraversal([1,null,2,3]))
 
 
-// Approach 2: Iteration
+// Approach 2: Using stack
 // Time: O(n)
-// Space: O(n) + callstack O(n)
-// var inorderTraversal = function(root) {
-     
-// };
+// Space: O(n)
+var inorderTraversal2 = function(root) {
+    let res = []
+    let stack = []
+    cur = root
+    while(cur !== null || stack.length !== 0){
+        while(cur !== null){
+            console.log(cur.val)
+            stack.push(cur)
+            cur = cur.left
+        }
+        cur = stack.pop()
+        res.push(cur)
+        cur = cur.right
+    }
+
+    return res
+};
+
+
+// Approach 3: Iteration & Morris Traversal
+// Time: O(n)
+// Space: O(1)
+var inorderTraversal3 = function(root) {
+     let node = root
+     const result = []
+     while(node){
+        if(!node.left){
+            result.push(node.val)
+            node = node.right
+        }else{
+            const pred = findPredecessor(node)
+            if(pred.right === node){
+                pred.right = null
+                result.push(node.val)
+                node = node.right
+            }else{
+                pred.right = node
+                node = node.left
+            }
+        }
+     }
+     return result
+};
+
+function findPredecessor(root){
+    let node = root.left
+    while(node.right && node.right !==root){
+        node = node.right
+    }
+    return node
+}
 
 // console.log(inorderTraversal([1,null,2,3]))
 

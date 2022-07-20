@@ -94,7 +94,7 @@ class BST{
                     searchTree(node.right)   
                 }
             }
-        }
+         }
 
         searchTree(this.root)
     }
