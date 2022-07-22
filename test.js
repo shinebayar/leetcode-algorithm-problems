@@ -1,18 +1,16 @@
-function twoSum(arr, target){
-    let ans = []
-    for(let i=0; i<arr.length; i++){
-        if(arr[i] < target){
-            for(let j=1; j<arr.length; j++){
-                if((target - arr[i]) == arr[i+j]){
-                    ans.push(i)
-                    ans.push(j)
-                }
-            }
-        }
+const test = () => {
+    // let i = 5
+    // while(i--){
+    //     console.log(i)
+    // }
+
+    // let k = [1,2,3,4]
+    // console.log(k.shift())
+
+    let i = 1
+    while(i--){
+        console.log(i)
     }
-
-    console.log(ans)
-
 }
 
-twoSum([3,2,4], 6)
+console.log(test())

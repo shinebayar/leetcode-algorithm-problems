@@ -22,10 +22,47 @@
 // The number of nodes in the tree is in the range [0, 104].
 // -100 <= Node.val <= 100
 
-var maxDepth = function(root) {
-    if(!root) return null;
-    let max = Math.max(maxDepth(root.left), maxDepth(root.right));
-    return max + 1;
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+// /**
+//  * @param {TreeNode} root
+//  * @return {number}
+//  */
+
+// Approach 1: Recursive Depth-first-search
+// Time complexity = O(n)
+// Space complexity = O(n)
+var maxDepth1 = function(root) {
+    if(!root) return 0
+    return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+};
+
+
+// Approach 2: Iterative Breadth-first-search
+// Time complexity = O(n)
+// Space complexity = O(n)
+var maxDepth2 = function(root) {
+    if(!root) return 0
+
+    let q = [root]
+    level = 0
+
+    while(q.length){
+        let len = q.length
+        while(len--){
+            const cur = q.shift()
+            if(cur.left) q.push(cur.left)
+            if(cur.right) q.push(cur.right)
+        }
+        level++
+    }
+    return level
 };
 
 // #tree #depth-first-search #breadth-first-search #binary-tree
