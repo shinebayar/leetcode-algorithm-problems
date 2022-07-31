@@ -31,30 +31,18 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let buy, sell = 0
+    let buyPrice = Infinity
+    let profit = 0
     
-    for(let i=0; i<prices.length; i++){
-        if(prices[i] < prices[i+1]){
-            if(prices[i] > buy){
-                buy = prices[i]
-            }
-            if(prices[i+1] > sell && prices[i+1] <= prices.length){
-                sell = prices[i+1]
-            }
-        }else{
-            if(prices[i] < buy){
-                buy = prices[i]
-            }
-            
-            if(prices[i+1] > sell && prices[i+1] <= prices.length){
-                sell = prices[i+1]
-            }
+    for(let price of prices){
+        if(price < buyPrice){
+            buyPrice = price
+        } else if(price - buyPrice > profit){
+            profit = price - buyPrice
         }
     }
     
-    console.log(sell - buy)
-    
-    return ((sell - buy) > 0 ? (sell - buy) : 0)
+    return profit
 };
 
 console.log(maxProfit([7,1,5,3,6,4]))
@@ -62,5 +50,34 @@ console.log(maxProfit([7,1,5,3,6,4]))
 // #array #dynamic-programming
 // ##easy
 
-// Time complexity = 
-// Space complexity = 
+// Time complexity = O(n)
+// Space complexity = O(1)
+
+
+// Little bit different approach
+// var maxProfit = function(prices) {
+//     let buy, sell = 0
+    
+//     for(let i=0; i<prices.length; i++){
+//         if(prices[i] < prices[i+1]){
+//             if(prices[i] > buy){
+//                 buy = prices[i]
+//             }
+//             if(prices[i+1] > sell && prices[i+1] <= prices.length){
+//                 sell = prices[i+1]
+//             }
+//         }else{
+//             if(prices[i] < buy){
+//                 buy = prices[i]
+//             }
+            
+//             if(prices[i+1] > sell && prices[i+1] <= prices.length){
+//                 sell = prices[i+1]
+//             }
+//         }
+//     }
+    
+//     console.log(sell - buy)
+    
+//     return ((sell - buy) > 0 ? (sell - buy) : 0)
+// };
