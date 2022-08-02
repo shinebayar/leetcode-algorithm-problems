@@ -29,10 +29,10 @@
 // Accepted 1,764,820
 // Submissions 2,529,557
 
-// Approach 1
+// Approach 1 -- using set
 // Time complexity = O(n)
 // Space complexity = O(n)
- var singleNumber = function(nums) {
+ var singleNumber1 = function(nums) {
     let res = new Set()
     
     for(num of nums){
@@ -43,7 +43,22 @@
     return Array.from(res)[0]
 };
 
-console.log(singleNumber([4,1,2,1,2]))
+// console.log(singleNumber1([4,1,2,1,2]))
+
+// Approach 2 -- using bit manipulation
+// Time complexity = O(n)
+// Space complexity = O(1)
+var singleNumber2 = function(nums) {
+    let res = 0
+    
+    for(num of nums){
+        res = res ^ num
+    }
+
+    return res
+};
+
+(singleNumber2([4,1,2,1,2,4,19]))
 
 // #array #bit-manipulation 
 // ##easy
