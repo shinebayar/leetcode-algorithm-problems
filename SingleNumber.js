@@ -29,10 +29,9 @@
 // Accepted 1,764,820
 // Submissions 2,529,557
 
-/**
- * @param {number[]} nums
- * @return {number}
- */
+// Approach 1
+// Time complexity = O(n)
+// Space complexity = O(n)
  var singleNumber = function(nums) {
     let res = new Set()
     
@@ -45,3 +44,6 @@
 };
 
 console.log(singleNumber([4,1,2,1,2]))
+
+// #array #bit-manipulation 
+// ##easy
