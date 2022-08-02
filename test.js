@@ -1,10 +1,14 @@
 const test = () => {
 
-    for(let i=0; i<=2; i++){
-        if((i+1) <= 2){
-            console.log(i)
-        }
+    let sum = 0
+
+    for(let i=1; i<=100; i++){
+        sum = sum + i
     }
+
+    console.log(100*(100-1)/2)
+
+    return sum
     
 }
 
