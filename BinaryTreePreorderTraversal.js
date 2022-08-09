@@ -43,24 +43,56 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
- var preorderTraversal = function(root) {
+
+// Approach 1: Using recursion
+// Time complexity = O(n)
+// Space complexity = O(n)
+ var preorderTraversal1 = function(root) {
     let res = []
     
     const check = node => {
-        if(node === null) return res
-        else res.push(root.val)
+        if(node === null) return
+        else res.push(node.val)
         
-        if(node.right !== null) res.push(node.right)
-        if(node.left !== null) res.push(node.left)    
+        if(node.left !== null) check(node.left)
+        if(node.right !== null) check(node.right)
     }
     
     check(root)
+    
+    return res
 };
 
-preorderTraversal([1,null,2,3])
+// preorderTraversal1([1,null,2,3])
+
+
+// Approach 2: Using stack
+// Time complexity = O(n)
+// Space complexity = O(n)
+var preorderTraversal = function(root) {
+    
+    if(!root) return []
+    
+    let stack = [root]
+    let res = []
+    
+    while(stack.length){
+        
+        let node = stack.pop()
+        res.push(node.val)
+
+        if(node.right) stack.push(node.right)
+        if(node.left) stack.push(node.left)
+        
+        console.log('node: ', node)
+        console.log('stack: ', stack)
+        console.log('res: ', res)
+        console.log('stack.length: ', stack.length)
+        console.log('--------------------')
+    }
+    
+    return res
+};
 
 // #stack #tree #depth-first-search #binary-tree
 // ##easy
-
-// Time complexity = O(n)
-// Space complexity = O(n)
