@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\SingleNumber.js"
+            "program": "${workspaceFolder}\\MajorityElement.js"
         }
     ]
 }
