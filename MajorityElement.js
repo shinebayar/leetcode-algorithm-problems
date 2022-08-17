@@ -42,26 +42,49 @@
 // Approach #1 Using map object of javascript
 // Time complexity = O(n)
 // Space complexity = O(n)
- var majorityElement = function(nums) {
-    let count = 0
+ var majorityElement1 = function(nums) {
     let map = new Map()
     
     for(let i=0; i<nums.length; i++){
         if(map.has(nums[i])) map.set(nums[i], map.get(nums[i]) + 1)
         else map.set(nums[i], 1)
-    }
 
-    for(let [key, value] of map){
-        if(value > count) {
-            count = value
-            res = key
+        if(map.get(nums[i]) > nums.length/2) return nums[i]
+    }
+};
+
+// Approach #2 Using Boyer Moore algorithm
+// Time complexity = O(n)
+// Space complexity = O(1)
+var majorityElement2 = function(nums) {
+    let res, count = 0
+
+    for(num of nums){
+        if(count === 0) res = num
+        count = count + ( num === res ? 1 : -1 )
+    }
+    console.log(res)
+    return res
+};
+
+// Approach #3 Using sorting
+// Time complexity = O(n2)
+// Space complexity = O(1)
+var majorityElement = function(nums) {
+    let res, count = 0
+
+    for(num of nums.sort()){
+        if(res === num ) count += 1
+        else {
+            res = num
+            count = 0
+            count += 1
+        }
+
+        if(count > nums.length/2){
+            return num
         }
     }
-
-    console.log(map)
-    console.log(res)
-    
-    return res
 };
 
 majorityElement([2,2,1,1,1,2,2])
