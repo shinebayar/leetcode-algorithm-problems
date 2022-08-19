@@ -48,20 +48,42 @@
  * @param {string} columnTitle
  * @return {number}
  */
- var titleToNumber = function(columnTitle) {
+
+// Approach #1 --- using array
+// Time complexity = O(n)
+// Space complexity = O(1)
+ var titleToNumber1 = function(columnTitle) {
     const alphabet = ["0","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y", "Z"];
     let res = 0
     
     for(let i=0, j=columnTitle.length-1; i<columnTitle.length; i++, j--){
-        res = res + ( alphabet.indexOf(columnTitle[j]) * Math.pow(26, i) )
+        res += ( alphabet.indexOf(columnTitle[j]) * Math.pow(26, i) )
     }
     
     return res
     
 };
 
-console.log(titleToNumber('AB'))
 
+// Approach #2 --- using ASCII number, encode number
+// Time complexity = O(n)
+// Space complexity = O(1)
+var titleToNumber = function(columnTitle) {
+    let res = 0
+    
+    for(let i=0, j=columnTitle.length-1; i<columnTitle.length; i++, j--){
+        res += ( (columnTitle[j].charCodeAt() - 64) * Math.pow(26, i) )
+    }
+    
+    return res
+    
+};
+// 'A'.charCodeAt() = 65
+// 'B'.charCodeAt() = 66
+// .... 
+// 'Z'.charCodeAt() = 90
+
+console.log(titleToNumber1('ABC'))
 
 // #math #string
 // ##easy
