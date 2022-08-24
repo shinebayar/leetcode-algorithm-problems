@@ -38,7 +38,7 @@
  * @return {number} - a positive integer
  */
 
-// Time complexity = O(n)
+// Time complexity = O(1)
 // Space complexity = 0(1)
  var reverseBits = function(n) {
     n = n.toString(2)
