@@ -44,14 +44,34 @@
  * @param {number} n
  * @return {boolean}
  */
+
+// Time complexity = O(n)
+// Space complexity = O(n)
 var isHappy = function(n) {
-    let res = 0
-    console.log(n.length)
-    console.log(typeof(n))
-    for(let i=0; i<n.toString().length; i++){
-        res = Math.pow(n[i], n.toString().length)
-        console.log(res)
+    let map = new Map()
+    let ans = true
+    
+    const checkHappyRecursive = k => {
+        if(map.get(k) === 2) return ans=false
+        
+        k = k.toString()
+        let res = 0
+
+        for(let i=0; i<k.length; i++){
+            res = res + Math.pow(k[i], 2)
+        }
+
+        if(map.has(res)) map.set(res, 2)
+        else map.set(res, 1)
+
+        if(res === 1) return ans=true
+        else checkHappyRecursive(res)
     }
+
+    checkHappyRecursive(n)
+    
+    return ans
+
 };
 
 console.log(isHappy(19))
