@@ -60,3 +60,9 @@
 };
 
 console.log(isIsomorphic('egg', 'add'))
+
+// Time complexity = O(n)
+// Space complexity = O(n)
+
+// #hash-table #string
+// ##easy
