@@ -71,7 +71,8 @@
 
 // Approach 2: using recursion
 // Time complexity = O(n)
-// Space complexity = O(1)
+// Space complexity = O(1)n 
+
 var reverseList = function(head) {
     let prev = null
     let curr = head
