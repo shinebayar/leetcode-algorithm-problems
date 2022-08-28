@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\IsomorphicStrings.js"
+            "program": "${workspaceFolder}\\ContainsDuplicates2.js"
         }
     ]
 }
