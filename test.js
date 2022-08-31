@@ -1,15 +1,11 @@
-const test = () => {
-
-    let sum = 0
-
-    for(let i=1; i<=100; i++){
-        sum = sum + i
+const majorityElement = function(A){
+    let b = Math.abs(A)
+    b = b.toString()
+    for(let i=0, j=b.length; i<Math.ceil(b.length/2); i++, j--){
+        if(b[i] !== b[j-1] ) return 0
     }
-
-    console.log(100*(100-1)/2)
-
-    return sum
     
+    return 1
 }
 
-console.log(test())
+console.log(majorityElement(2147447412))
