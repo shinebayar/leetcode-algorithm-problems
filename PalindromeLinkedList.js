@@ -102,7 +102,34 @@ var isPalindrome3 = function(head) {
     return res
 }
 
-console.log(isPalindrome3(a))
+
+// Approach 3: Reversing first half and compare the values
+// Time complexity = O(n)
+// Space complexity = O(n)
+var isPalindrome3 = function(head) {
+    let revHead = null
+    let slow = fast = head
+
+    while(fast !== null && fast.next !== null){
+        fast = fast.next.next
+
+        // reversing
+        let tmp = slow.next
+        slow.next = revHead
+        revHead = slow
+        slow = tmp
+    }
+
+    // if fast is not null we have odd elements so skip 1 in the middle
+    if(fast !== null) slow = slow.next
+
+    while(revHead && revHead.val === slow.val){
+        revHead = revHead.next
+        slow = slow.next
+    }
+
+    return revHead === null
+}
 
 
 // #linked-list #two-pointers #stack #recursion
