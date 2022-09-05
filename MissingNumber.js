@@ -46,6 +46,46 @@
  * @return {number}
  */
 
+
+// Approach 1: Using hash-table 
+// Time complexity = O(n)
+// Space complexity = O(n)
+var missingNumber1 = function(nums) {
+    let obj = {}
+    
+    for(i of nums) obj[i] = 1
+    
+    for(let i=0; i<=nums.length; i++){
+        if(obj[i] === undefined) return i
+    }
+}
+
+// console.log(missingNumber1([0,1]))
+
+
+// Approach 2: Using sort
+// Time complexity = O(n2)
+// space complexity = O(1)
+var missingNumber = function(nums) {
+    for(let i=0; i<nums.length; i++){
+        for(let j=i+1; j<nums.length; j++){
+            if(nums[i] > nums[j]){
+                let tmp = nums[i]
+                nums[i] = nums[j]
+                nums[j] = tmp
+            }
+        }
+    }
+    
+    for(let i=0; i<=nums.length; i++){
+        if(i !== nums[i]) return i
+    }
+};
+
+// console.log(missingNumber1([0,1]))
+
+
+// Approach 3: Using math cleverly
 // Time complexity = O(n)
 // space complexity = O(1)
  var missingNumber = function(nums) {
