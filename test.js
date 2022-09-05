@@ -1,11 +1,13 @@
 const majorityElement = function(A){
-    let b = Math.abs(A)
-    b = b.toString()
-    for(let i=0, j=b.length; i<Math.ceil(b.length/2); i++, j--){
-        if(b[i] !== b[j-1] ) return 0
+    var statArr = ["Closed", "Investigation"];
+    var typeArr = ["RD", "WW", "CC", "MB", "CN" ];
+    var sql = "";
+
+    for (let i=0; i<statArr.length; i++) {
+        for(let j=0; j<typeArr.length; j++){
+            console.log(`stat = '${statArr[i]}' AND type = '${typeArr[j]}' OR`)
+        }
     }
-    
-    return 1
 }
 
 console.log(majorityElement(2147447412))
