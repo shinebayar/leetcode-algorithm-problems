@@ -1,13 +1,10 @@
-const majorityElement = function(A){
-    var statArr = ["Closed", "Investigation"];
-    var typeArr = ["RD", "WW", "CC", "MB", "CN" ];
-    var sql = "";
+const majorityElement = function(re){
+    let vowels = ['a', 'e', 'i', 'o', 'u']
 
-    for (let i=0; i<statArr.length; i++) {
-        for(let j=0; j<typeArr.length; j++){
-            console.log(`stat = '${statArr[i]}' AND type = '${typeArr[j]}' OR`)
-        }
-    }
+    if(re[0] === re[re.length-1] && vowels.includes(re[0])) return true
+    else false
+
+
 }
 
-console.log(majorityElement(2147447412))
+console.log(majorityElement('abcda'))
