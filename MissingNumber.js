@@ -94,7 +94,7 @@ var missingNumber = function(nums) {
 
     for(let i=0; i<nums.length; i++){
         sumOfIndexes += i
-        sum += nums[i]
+        sum += nums[i] 
     }
 
     return sumOfIndexes - sum
