@@ -47,7 +47,7 @@
  */
 
 // This is constructor function
- var NumArray = function(nums) {
+var NumArray = function(nums) {
     this.prefixSum = []
     let tmp = 0
 
@@ -65,7 +65,7 @@
  * @return {number}
  */
 NumArray.prototype.sumRange = function(left, right) {
-    return this.prefixSum[right] - (this.prefixSum[left - 1] or 0)
+    return this.prefixSum[right] - (this.prefixSum[left - 1] || 0)
 };
 
 /** 
