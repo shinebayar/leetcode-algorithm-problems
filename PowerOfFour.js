@@ -54,14 +54,14 @@ var isPowerOfFour = function(n) {
 // Space complexity = O(1)
 var isPowerOfFour = function(n) {
     if( n === 1) return true
-    if( n < 4 ) return false
+    if( n < 4 || n % 4 !== 0 ) return false
     return isPowerOfFour(n/4)
 };
 
 // console.log(isPowerOfFour(25684247))
 
 
-// Approach 2: Using recurion
+// Approach 2: Using bit manipulation 1
 // Time complexity = O(n) cause using slice() method
 // Space complexity = O(1)
 var isPowerOfFour = function(n) {
@@ -73,7 +73,7 @@ var isPowerOfFour = function(n) {
 console.log(isPowerOfFour(25684247))
 
 
-// Approach 3: Using bit manipulation
+// Approach 3: Using bit manipulation 2
 // Time complexity = O(1)
 // Space complexity = O(1)
 var isPowerOfFour = function(n) {

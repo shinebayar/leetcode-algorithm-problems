@@ -44,7 +44,7 @@
  * @return {boolean}
  */
 
-// Approach 1: Using math
+// Approach 1: Using math or brute force
 // Time complexity = O(log3(n))
 // Space complexity = O(1)
 var isPowerOfThree = function(n) {
@@ -61,7 +61,9 @@ var isPowerOfThree = function(n) {
 // Time complexity = O(log3(n))
 // Space complexity = O(1)
 var isPowerOfThree = function(n) {
-    return n>0 && (n==1 || (n%3==0 && isPowerOfThree(n/3)))
+    if( n === 1 || n === 3 ) return true
+    if( n < 3 || n % 3 !== 0) return false
+    return isPowerOfThree(n/3)
 }
 
 

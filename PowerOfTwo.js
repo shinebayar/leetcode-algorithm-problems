@@ -43,22 +43,38 @@
  * @param {number} n
  * @return {boolean}
  */
+
+
+// Approach 1: Math or brute force
+// Time complexity = O(logn)
+// Space complexity = O(1)
 var isPowerOfTwo = function(n) {
-    if(n<=0) return false
-
-
-    let total = 0
-    let i = 1
-
-    while(total < n){
-        total = Math.pow(2, i)
-        i++
+    while( n > 2){
+        n /= 2
     }
-    
-    return total === n
+    return n == 2 || n == 1
 };
 
-console.log(isPowerOfTwo(1))
+
+
+// Approach 2: Recursion
+// Time complexity = O(logn)
+// Space complexity = O(1)
+var isPowerOfTwo = function(n) {
+    if(n == 1) return true
+    if(n < 2 || n % 2 !== 0) return false
+    return isPowerOfTwo(n/2)
+};
+
+
+
+// Approach 3: Bit manipulation
+// Time complexity = O(1)
+// Space complexity = O(1)
+var isPowerOfTwo = function(n) {
+    return n > 0 && !(n & n - 1)
+}
+
 
 // #math #bit-manipulation #recursion
 // ##easy
