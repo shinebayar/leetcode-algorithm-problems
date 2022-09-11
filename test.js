@@ -1,18 +1,11 @@
-const majorityElement = function(nums){
-    let i
-    let largest = second = -2454635434
-        
-    for (i=0; i<nums.length; i++){
-        if (nums[i] > largest){
-            second = largest 
-            largest = nums[i]
-        }else if (nums[i] != largest && nums[i] > second ){
-            second = nums[i]
-        }
+const majorityElement = function(s){
+    for(let i=0, j=s.length-1; i<s.length/2; i++, j--){
+        let tmp = s[i]
+        s[i] = s[j]
+        s[j] = tmp
     }
 
-    return second
-
+    return s
 }
 
-console.log(majorityElement([2,3,6,6,5]))
+console.log(majorityElement('dorj'))
