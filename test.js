@@ -1,11 +1,13 @@
-const majorityElement = function(s){
-    for(let i=0, j=s.length-1; i<s.length/2; i++, j--){
-        let tmp = s[i]
-        s[i] = s[j]
-        s[j] = tmp
+const majorityElement = function(arr, target){
+    let left = 0
+    let right = arr.length - 1
+    while( left <= right ){
+        let mid = Math.floor((left + right) / 2)
+        if( arr[mid] === target ) return true
+        if( target > arr[mid] ) left = mid + 1
+        else right = mid - 1
     }
-
-    return s
+    return false
 }
 
-console.log(majorityElement('dorj'))
+console.log(majorityElement([4,5,9], 4))

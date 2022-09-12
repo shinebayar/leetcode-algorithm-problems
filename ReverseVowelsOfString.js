@@ -63,7 +63,8 @@ var reverseVowels = function(s) {
         }
     }
 
-    return s.join('')
+    return s.join('') 
+    
 };
 
 console.log(reverseVowels('aA'))
