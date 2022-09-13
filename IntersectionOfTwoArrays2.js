@@ -106,6 +106,23 @@ var intersect2 = function(nums1, nums2) {
 // Space complexity = O(n)
 var intersect3 = function(nums1, nums2) {
 
+    const binarySearch = target => {
+        let l = 0, r = nums2.length-1
+        while(l < r){
+            let mid = l + Math.floor((r - l) / 2)
+            if(nums2[mid] < target){
+                l = mid + 1
+            }else{
+                r = mid
+            }
+        }
+        if(nums2[l] == target){
+            nums2[l] = -Infinity
+            return true
+        }
+        return false
+    }
+
     nums1.sort((a,b)=>a-b) 
     nums2.sort((a,b)=>a-b)
     let ans=[]
@@ -116,22 +133,6 @@ var intersect3 = function(nums1, nums2) {
 		}
     }
     return ans
-    
-    const binarySearch = target => {
-        let l = 0, r = nums2.length-1
-        while(l < r){
-            let mid = l + Math.floor((r - l) / 2);
-            if(nums2[mid] < target){
-				l = mid + 1
-			}else{
-				r = mid
-			}
-        }
-        if(nums2[l] == target){
-            nums2[l] = -Infinity; return true
-        }
-        return false
-    }
 };
 
 console.log(intersect3(
