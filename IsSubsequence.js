@@ -81,7 +81,7 @@ var isSubsequence = function(s, t) {
     return false
 };
 
-console.log(isSubsequence("abc", "ahbgdcesfdsdf"))[
+console.log(isSubsequence("abc", "ahbgdcesfdsdf"))
   // #two-pointers #string #dynamic-programming
   // ##easy
 
