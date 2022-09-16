@@ -1,13 +1,38 @@
-const majorityElement = function(arr, target){
-    let left = 0
-    let right = arr.length - 1
-    while( left <= right ){
-        let mid = Math.floor((left + right) / 2)
-        if( arr[mid] === target ) return true
-        if( target > arr[mid] ) left = mid + 1
-        else right = mid - 1
-    }
-    return false
-}
+var findLeftLeaves = function(root) {
+    let sum = 0
 
-console.log(majorityElement([4,5,9], 4))
+    const recur = (node, isLeft) => {
+        if(!node) return
+
+        if(node.left) recur(node.left, true)
+        if(node.right) recur(node.right, false)
+
+        if(isLeft && !node.left && !node.right) sum += node.val
+    }
+
+    recur(root, false)
+
+    return sum
+
+};
+
+var findLeftLeaves2 = function(root) {
+    let sum = 0
+    let queue = [root]
+    let node
+
+    while(queue.length){
+        node = queue.shift()
+
+        if(node.left){
+            if(!node.left.left && !node.left.right) sum += node.left.val
+            else queue.push(node.left)
+        }
+
+        if(node.right) queue.push(node.right)
+    }
+
+    return sum
+
+};
+
