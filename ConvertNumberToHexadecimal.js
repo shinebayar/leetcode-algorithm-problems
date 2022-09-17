@@ -42,8 +42,8 @@
                10:'a', 11: 'b', 12:'c', 13:'d', 14:'e', 15:'f'}
     let allRemainer = []
     let hex = ''
-    if(num > 0 ){
-        while( num >= 1 ){
+    if(num > 0){
+        while(num >= 1){
             remainer = (num / 16) % 1 * 16
             num = Math.floor(num / 16)
             allRemainer.push(remainer)
@@ -58,7 +58,9 @@
 
         return hex
     }else{
-        
+        while(num != 0){
+            num = Math.floor(num/2)
+        }
     }
     
     
