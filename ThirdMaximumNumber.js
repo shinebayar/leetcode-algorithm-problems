@@ -57,6 +57,7 @@ var thirdMax = function(nums) {
         for(let j=i+1; j<nums.length; j++){
             if(nums[i] === nums[j]) {
                 nums.splice(j, 1)
+                j = i
                 continue
             }
             else {
@@ -69,12 +70,11 @@ var thirdMax = function(nums) {
         }
         
     }
-    console.log(nums)
-    console.log(nums.length)
-    console.log(nums[nums.length - 1])
+    
+    return nums.length >= 3 ? nums[2] : nums[0]
 };
 
-console.log(thirdMax([2,2,3,1]))
+// console.log(thirdMax([1,1,2]))
 
 
 
@@ -96,7 +96,7 @@ console.log(thirdMax([2,2,3,1]))
     return third === -Infinity ? first : third
 };
 
-// console.log(thirdMax([2,2,3,1]))
+console.log(thirdMax([2,2,3,1]))
 
 
 // #array #sorting
