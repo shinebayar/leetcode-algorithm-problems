@@ -124,7 +124,9 @@
 
 
 
-
+// Approach: Bit manipulation
+// Time complexity = O(n)
+// Space complexity = O(1)
 var toHex2 = function(num) {
     if (num == 0) return '0'
     let hex = '0123456789abcdef'
