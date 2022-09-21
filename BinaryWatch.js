@@ -41,30 +41,26 @@
  */
 
 
-// Approach
-// Time complexity = O
-// Space complexity = O
+// Approach using Bit manipulation
+// Time complexity = O(n2)
+// Space complexity = O(n)
  var readBinaryWatch = function(turnedOn) {
-    let ans = []
-    
-    if(turnedOn > 6) return ans
-    
-    let light = turnedOn
-    
-    let hour = [8, 4, 2, 1]
-    let minute = [32, 16, 8, 4, 2, 1]
-    let tmp = ''
-    
-    for(let i=0; i<hour.length; i++){
-        light -= 1
-        for(let j=0; j<minute.length; j++){
-            tmp = hour[i] + ((minute[j] < 10) ? ':0'+minute[j] : ':'+minute[j])
-            ans.push(tmp)
-            tmp = ''
+   let res = []
+   let countBit, formatedHour
+
+   for(let hour=0; hour<12; hour++){
+    for(let minute=0; minute<60; minute++){
+        countBit = hour.toString(2).split(1).length-1
+        countBit += minute.toString(2).split(1).length-1
+
+        if(countBit === turnedOn){
+            formatedHour = `${hour.toString()}:${(minute < 10) ? '0'+minute.toString() : minute.toString()}`
+            res.push(formatedHour)
         }
     }
-    
-    console.log(ans)
+   }
+   
+   return res
 }
 
 console.log(readBinaryWatch(1))
