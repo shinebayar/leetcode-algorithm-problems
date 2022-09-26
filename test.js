@@ -1,54 +1,41 @@
-var findLeftLeaves = function(root) {
-    let sum = 0
+var test = function(nums) {
+    // let p1 = 0
+    // let p2= 1
 
-    const recur = (node, isLeft) => {
-        if(!node) return
+    // while(p1 < nums.length || p2 < nums.length){
+    //     console.log(nums[p1], nums[p2])
+    //     if(nums[p1] === nums[p2]) return true
+    //     p2++
+    //     if(nums[p2] === undefined){
+    //         p1++
+    //         p2 = p1 + 1
+    //     }
+    // }
 
-        if(node.left) recur(node.left, true)
-        if(node.right) recur(node.right, false)
-
-        if(isLeft && !node.left && !node.right) sum += node.val
-    }
-
-    recur(root, false)
-
-    return sum
-
-};
-
-var findLeftLeaves2 = function(root) {
-    let sum = 0
-    let queue = [root]
-    let node
-
-    while(queue.length){
-        node = queue.shift()
-
-        if(node.left){
-            if(!node.left.left && !node.left.right) sum += node.left.val
-            else queue.push(node.left)
-        }
-
-        if(node.right) queue.push(node.right)
-    }
-
-    return sum
-
-};
+    // return false
 
 
-var thirdMax = function(nums) {
-    let first = second = third = -Infinity
-    
+    // for(let i=0, j=1; j<=nums.length; j++){
+    //     console.log(nums[i], nums[j])
+    //     if(nums[i] === nums[j]) return true
+    //     if(nums[j] === undefined){
+    //         i++
+    //         j = i + 1
+    //     } 
+    // }
+
+    // return false
+
+
+    let obj = {}
+
     for(let i=0; i<nums.length; i++){
-        if(nums[i] > first) [first, second, third] = [nums[i], first, second]
-        else if(nums[i] > second) [second, third] = [nums[i], second]
-        else if(nums[i] > third) third = nums[i]
+        obj[nums[i]] = obj[nums[i]] + 1 || 1
+        if(obj[nums[i]] === 2) return true
     }
-    
-    console.log(third, second, first)
-    
-    return third != 0 ? third : first
-};
-console.log(thirdMax([1,-2147483648,2]))
 
+    return false
+
+};
+
+console.log(test([1,2,3,4,5,4]))
