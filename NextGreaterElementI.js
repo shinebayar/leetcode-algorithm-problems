@@ -72,7 +72,7 @@ var nextGreaterElement1 = function(nums1, nums2) {
 // console.log(nextGreaterElement1([1,3,5,2,4], [6,5,4,3,2,1,7]))
 
 
-// Approach: brute force
+// Approach: hash-table DS
 // Time complexity = O(n)
 // Space complexity = O(n)
 var nextGreaterElement = function(nums1, nums2) {
