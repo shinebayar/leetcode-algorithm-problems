@@ -27,23 +27,28 @@
 // s consists of parentheses only '()[]{}'.
 
 
+// Approach: stack DS
+// Time complexity = O(n)
+// Space complexity = O(n)
 var isValid = function(s) {
-
-    const p = { '(': ')', '{': '}', '[':']' }
-    let ans = []
-
-    for(let i=0; i<s.length; i++){
-        if( s.charAt(i) in p ){
-            ans.push(s.charAt(i))
-        }else if( ans.length !== 0 && p[ans[ans.length-1]] === s.charAt(i)  ){
-            ans.pop()
-        }else {
-            return false
+    let stack = []
+    let opposite = {')': '(', '}': '{', ']': '[',}
+    
+    for(let char of s){
+        if(char === '(' || char === '{' || char === '['){
+            stack.push(char)
+        }else{
+            if(stack[stack.length-1] === opposite[char]) stack.pop()
+            else return false
         }
     }
     
-    return ans.length === 0 ? true : false
+    return stack.length === 0 ? true : false
 };
 
 // isValid('{{({})}}')
 // isValid('()[]{}')
+
+
+// #string #stack
+// ##easy
