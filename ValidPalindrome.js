@@ -33,6 +33,12 @@
  * @param {string} s
  * @return {boolean}
  */
+
+
+
+// Approach: Using two pointers
+// Time complexity = O(n/2) ~ O(n)
+// Space complexity = O(n)
  var isPalindrome = function(s) {
     input = s.replace(/[^0-9a-z]/gi, '').toLowerCase()
     
@@ -50,7 +56,7 @@
 console.log(isPalindrome("A man, a \plan, a \canal: Panama"))
 // console.log(isPalindrome(" "))
 
-// Time complexity = O(log n)
-// Space complexity O(1)
+
 
 // two-pointer #string
+// ##easy
