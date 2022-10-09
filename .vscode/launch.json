@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\MaximumAverageSubarrayI.js"
+            "program": "${workspaceFolder}\\ValidPartitioning.js"
         }
     ]
 }
