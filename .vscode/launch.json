@@ -11,7 +11,7 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}\\NextGreaterElementI.js"
+            "program": "${workspaceFolder}\\MaximumAverageSubarrayI.js"
         }
     ]
 }
