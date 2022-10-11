@@ -67,8 +67,8 @@ var maxSubArray1 = function(nums) {
 
 
 // Approach 2: (Negative number doesn't contribute)
-// Time complexity = O()
-// Space complexity = O()
+// Time complexity = O(n)
+// Space complexity = O(1)
 var maxSubArray = function(nums) {
     let maxSub = nums[0]
     let curSum = 0
@@ -77,7 +77,6 @@ var maxSubArray = function(nums) {
         if(curSum < 0) curSum = 0
         curSum += nums[i]
         maxSub = Math.max(maxSub, curSum)
-        console.log(maxSub)
     }
 
     return maxSub
