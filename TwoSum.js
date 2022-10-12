@@ -30,22 +30,34 @@
 // Only one valid answer exists.
 
 
-const TwoSum = (nums, target) => {
-  let num1, num2;
-  let answer = [];
-
-  for (var i = 0; i < nums.length; i++) {
-    num1 = nums[i];
-    num2 = target - num1;
-    if (nums.includes(num2, i + 1)) {
-      answer.push(nums.indexOf(num1, i));
-      answer.push(nums.indexOf(num2, i + 1));
-      break;
+// Approach 1: brute force
+// Time complexity = O(n2)
+// Space complexity = O(1)
+const TwoSum1 = (nums, target) => {
+  for(let i=0; i<nums.length; i++){
+    for(let j=0; j<nums.length; j++){
+      if(nums[i] + nums[j] === target) return [i, j]
     }
   }
+}
 
-  return answer;
-};
+// console.log(TwoSum1([-1, -2, -3, -4, -5], -8))
 
-// TwoSum([2,7,11,15], 9);
-// TwoSum([-1, -2, -3, -4, -5], -8);
+
+// Approach 2: hash-table DS
+// Time complexity = O(n)
+// Space complexity = O(n)
+const TwoSum = (nums, target) => {
+  let hash = {}
+
+  for(let i=0; i<nums.length; i++){
+    if(hash[target - nums[i]] !== undefined) return [hash[target - nums[i]], i]
+    hash[nums[i]] = i
+  }
+}
+
+console.log(TwoSum([2,7,11,15], 9))
+
+
+// #array #hash-table
+// ##easy
