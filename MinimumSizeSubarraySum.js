@@ -72,7 +72,11 @@ var minSubArrayLen1 = function(target, nums) {
 
 
 
+<<<<<<< HEAD
 // Approach: sliding-window pattern
+=======
+// Approach: sliding-window technique or pattern
+>>>>>>> medium
 // Time complexity = O(n)
 // Space complexity = O(1)
 var minSubArrayLen2 = function(target, nums) {
@@ -94,29 +98,29 @@ var minSubArrayLen2 = function(target, nums) {
     return min_length
 };
 
-console.log(minSubArrayLen2(7, [2,3,1,2,4,3]))
+// console.log(minSubArrayLen2(7, [2,3,1,2,4,3]))
 
 
-// Approach: 
+// Approach 2: hash-table DS
 // Time complexity = O()
 // Space complexity = O()
 var minSubArrayLen = function(target, nums) {
-    // let min_length = 0
-    // let sum = 0
-    // let prefixSum = new Array(nums.length)
+    let min_length = 0
+    let sum = 0
+    let prefixSum = new Array(nums.length)
 
-    // for(let i=0; i<nums.length; i++){
-    //     sum += nums[i]
-    //     prefixSum[i] = sum
-    // }
+    for(let i=0; i<nums.length; i++){
+        sum += nums[i]
+        prefixSum[i] = sum
+    }
 
-    // for(let i=nums.length-1; i>=0; i--){
+    for(let i=nums.length-1; i>=0; i--){
+        sum -= nums[i]
+    }
 
-    // }
+    console.log(prefixSum)
 
-    // console.log(prefixSum)
-
-    // return min_length
+    return min_length
 };
 
 // console.log(minSubArrayLen(7, [2,3,1,2,4,3]))
