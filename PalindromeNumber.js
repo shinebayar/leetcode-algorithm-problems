@@ -28,15 +28,40 @@
 // -231 <= x <= 231 - 1
 
 
-const PalindromeNumber = (x) => {
-    x = x.toString()
-    let y = '';
+// Approach: math
+// Time complexity = O(n)
+// Space complexity = O(1)
+var isPalindrome1 = function(x) {
+    x = '' + x
     
-    for( var i=x.length-1; i >= 0; i-- ){
-        y += x.charAt(i)
+    for(let i=0; i<x.length/2; i++){
+        if(x[i] !== x[x.length - 1 - i]) return false
+    }
+    
+    return true
+};
+
+// console.log(isPalindrome1(-1))
+
+
+
+// Approach: math (not convert to string)
+// Time complexity = O(n)
+// Space complexity = O(1)
+var isPalindrome = function(x) {
+    let reverse = 0
+    let tmp = x
+
+    while(x !== 0){
+        reverse = (reverse * 10) + (x % 10)
+        x = Math.trunc(x / 10)
     }
 
-    return x === y ? true : false
-}
+    return reverse === tmp
+};
 
-PalindromeNumber(12145)
+console.log(isPalindrome(121))
+
+
+// #math
+// ##easy
