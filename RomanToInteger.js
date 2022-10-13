@@ -50,30 +50,47 @@
 // 2. Left to right
 // 3. 4 -> IV because Left < Right substruct
 
-const romanToInt = function(input) {
-    const symbols = {
-        'I': 1,
-        'V': 5,
-        'X': 10,
-        'L': 50,
-        'C': 100,
-        'D': 500,
-        'M': 1000
+
+
+// Approach: hash-table DS
+// Time complexity = O(n)
+// Space complexity = O(n)
+var romanToInt1 = function(s) {
+    let hash = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000, 
+               'IV':4, 'IX':9, 'XL':40, 'XC':90, 'CD':400, 'CM':900}
+    let toInteger = 0
+    
+    for(let i=0; i<s.length; i++){
+        if(hash[s[i] + s[i+1]] !== undefined){
+            toInteger += hash[s[i] + s[i+1]]
+            i++
+        }else toInteger += hash[s[i]]
     }
     
-    let answer = 0;
-    
-    for(let i=0; i < input.length; i++){
-        if( symbols[input.charAt(i)] < symbols[input.charAt(i+1)] && symbols[input.charAt(i+1)] !== undefined ){
-            answer -= symbols[input.charAt(i)];
-        }else{
-            answer += symbols[input.charAt(i)];
-        }
-    }
-    
-    return answer;
+    return toInteger
 };
 
-// romanToInt('XC');
-// romanToInt('LVIII');
-romanToInt('MCMXCIV');
+// console.log(romanToInt1("MCMXCIV"))
+
+
+
+// Approach: hash-table DS
+// Time complexity = O(n)
+// Space complexity = O(n)
+const romanToInt = function(input) {
+    let hash = {'I':1, 'V':5, 'X':10, 'L':50, 'C':100, 'D':500, 'M':1000}
+    let toInteger = 0
+    
+    for(let i=0; i<s.length; i++){
+        if(hash[s[i]] < hash[s[i+1]]) toInteger -= hash[s[i]]
+        else toInteger += hash[s[i]]
+    }
+    
+    return toInteger
+};
+
+console.log(romanToInt('MCMXCIV'))
+
+
+// #string #hash-table #math
+// ##easy

@@ -21,55 +21,28 @@
 // 0 <= strs[i].length <= 200
 // strs[i] consists of only lowercase English letters.
 
-const LongestCommonPrefix = strs => {
 
-    let ans = ''
 
-    if( strs === null && strs.length === 0) return ans
 
-    let minLen = strs[0].length
 
-    for(let i=0; i<strs.length; i++){
-        minLen = Math.min(minLen, strs[i].length)
-    }
-
-    for(let i=0; i<minLen; i++){
-        let current = strs[0][i]
-        for(let j=0; j<strs.length; j++){
-            if(strs[j][i] === current) ans += current
+// Approach: math
+// Time complexity = 0(n2)
+// Space complexity = O(1)
+var longestCommonPrefix = function(strs) {
+    let first = strs[0]
+    
+    for(let i=0; i<first.length; i++){
+        for(let j=1; j<strs.length; j++){
+            let other = strs[j]
+            if(first[i] !== other[i]) return first.slice(0, i)
         }
     }
+    
+    return first
+};
 
-    console.log(ans)
-    return ans
-}
-
-LongestCommonPrefix(["flower","flow","floght"])
-// 4 loop
-// flow f = f 
-// flower 
+console.log(LongestCommonPrefix(["flower","flow","floght"]))
 
 
-// const LongestCommonPrefix = strs => {
-
-//     let ans = ''
-
-//     if( strs === null && strs.length === 0) return ans
-
-//     let minLen = strs[0].length
-
-//     for(let i=0; i<strs.length; i++){
-//         minLen = Math.min(minLen, strs[i].length)
-//     }
-
-//     for(let i=0; i<minLen; i++){
-//         let current = strs[0][i]
-//         for(let j=0; j<strs.length; j++){
-//             if(strs[j][i] !== current) return ans
-//         }
-//         ans += current
-//     }
-
-//     console.log(ans)
-//     return ans
-// }
+// #string
+// ##easy
