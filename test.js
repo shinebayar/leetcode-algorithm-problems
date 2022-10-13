@@ -29,3 +29,12 @@ var partition = function(s) {
 	// this index contains all partitions of the first s.length-1 characters i.e. all partitions of the entire input
     return dp.pop();
 };
+
+
+function test(){
+    return 
+    'hello';
+}
+
+const val = test();
+console.log(val);
