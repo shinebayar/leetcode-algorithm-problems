@@ -27,23 +27,25 @@
 // s consists of parentheses only '()[]{}'.
 
 
+
+
+// Appraoch: stack and hash-table DS
+// Time complexity = O(n)
+// Space complexity = O(n)
 var isValid = function(s) {
-
-    const p = { '(': ')', '{': '}', '[':']' }
-    let ans = []
-
+    let hash = {')':'(', '}':'{', ']':'['}
+    let stack = []
+    
     for(let i=0; i<s.length; i++){
-        if( s.charAt(i) in p ){
-            ans.push(s.charAt(i))
-        }else if( ans.length !== 0 && p[ans[ans.length-1]] === s.charAt(i)  ){
-            ans.pop()
-        }else {
-            return false
-        }
+        if(s[i] === '(' || s[i] === '{' || s[i] === '[') stack.push(s[i])
+        else if(hash[s[i]] === stack[stack.length-1]) stack.pop()
+        else return false
     }
     
-    return ans.length === 0 ? true : false
+    return stack.length === 0
 };
 
-// isValid('{{({})}}')
-// isValid('()[]{}')
+console.log(isValid('{{({})}}'))
+
+// #string #stack
+// ##easy
