@@ -29,29 +29,52 @@
 // -100 <= Node.val <= 100
 // Both list1 and list2 are sorted in non-decreasing order.
 
-const mergeTwoLists = (l1, l2) => {
-    const dummy = new ListNode(0)
-    let prev = dummy
- 
-    while(l1 && l2){
-        if(l1.val <= l2.val){
-            prev.next = l1
-            prev = l1
-            l1 = l1.next
+
+
+
+// Approach: loop
+// Time complexity = O(n)
+// Space complexity = O(n)
+const mergeTwoLists1 = (list1, list2) => {
+    let merged = new Node()
+    let current = merged
+    
+    while(list1 && list2){
+        if(list1.val < list2.val){
+            current.next = list1
+            list1 = list1.next
         }else{
-            prev.next = l2
-            prev = l2
-            l2 = l2.next
+            current.next = list2
+            list2 = list2.next
         }
+        current = current.next
     }
     
-    if(!l1) prev.next = l2
-    if(!l2) prev.next = l1
+    current.next = list1 || list2
     
-    return dummy.next
+    return merged.next
 }
 
-// mergeTwoLists([1,2,4], [1,3,4])
+
+
+
+// Approach: recursion
+// Time complexity = O(n)
+// Space complexity = O(n)
+const mergeTwoLists = (list1, list2) => {
+   if(!list1 || !list2) return list1 || list2
+
+   if(list1.val < list2.val){
+    list1.next = mergeTwoLists(list1.next, list2)
+    return list1
+   }else{
+    list2.next = mergeTwoLists(list1, list2.next)
+    return list2
+   }
+}
+
+
+
 
 class LinkedList{
     constructor(){
