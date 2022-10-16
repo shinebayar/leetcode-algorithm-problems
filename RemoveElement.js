@@ -50,21 +50,22 @@
 // 0 <= val <= 100
 
 
+
+
+// Approach: Using two-pointer technique or pattern
+// Time complexity = O(n)
+// Space complexity = O(1)
 var removeElement = function(nums, val) {
-    let index = 0
-
-    for(let i=0; i<nums.length; i++){
-        if(nums[i] != val){
-            nums[index] = nums[i]
-            index ++
-        }
+    let p1 = 0
+    for(let p2=0; p2<nums.length; p2++){
+        if(nums[p2] !== val) nums[p1++] = nums[p2]
     }
-
-    return index
+    
+    return p1
 };
 
 removeElement([0,1,2,2,3,2,2,2], 2)
 
 // #array #pointers
-// @easy
+// ##easy
 
