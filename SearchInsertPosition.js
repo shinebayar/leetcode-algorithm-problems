@@ -25,27 +25,26 @@
 // nums contains distinct values sorted in ascending order.
 // -104 <= target <= 104
 
+
+
+// Approach: binary-search algorithm
+// Time complexity = O(logn)
+// Space complexity = O(1)
 var searchInsert = function(nums, target) {
-    left = 0 
-    right = nums.length - 1
+    let left = 0 
+    let right = nums.length - 1
 
     while(left <= right){
-        mid = Math.floor((left+right)/2)
-        if(nums[mid] === target) {
-            console.log(mid) 
-            return mid
-        }
-        else if(nums[mid] < target){
-            left = mid + 1
-        }else{
-            right = mid - 1
-        }
+        let mid = Math.floor((left + right) / 2)
+        if(nums[mid] === target) return mid
+        else if(nums[mid] < target) left = mid + 1
+        else right = mid - 1
     }
 
     return left
-
 };
 
 searchInsert([1,3,5,6,9], 7)
 
 // #array #binary-search
+// ##easy
