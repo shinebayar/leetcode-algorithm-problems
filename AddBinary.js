@@ -18,6 +18,20 @@
 // a and b consist only of '0' or '1' characters.
 // Each string does not contain leading zeros except for the zero itself.
 
+
+
+
+
+// Approach: Built in function
+// var addBinary = function(a, b) {
+//     return (parseInt(a, 2) + parseInt(b, 2)).toString(2)
+// };
+
+
+
+// Approach: bit-manipulation
+// Time complexity = O(n) - linear
+// Space complexity = O(1) - constant
 var addBinary = function(a, b) {
     let sum = ''
     let carry = 0
@@ -51,12 +65,8 @@ a b carry => sum new_carry
 1 1 1     => 1   1
 */
 
-// Approach: Built in function
-// var addBinary = function(a, b) {
-//     return (parseInt(a, 2) + parseInt(b, 2)).toString(2)
-// };
+
+
 
 // #math #string #bit-manipulation #simulation
-// @easy
-// time-complexity = O(n) - linear
-// space-complexity = O(1) - constant
+// ##easy
