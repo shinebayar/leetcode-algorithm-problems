@@ -33,24 +33,25 @@
 // 0 <= digits[i] <= 9
 // digits does not contain any leading 0's.
 
+
+
+
+// Time complexity = O(n)
+// Space complexity = O(1)
 var plusOne = function(digits) {
-    for(let i=digits.length-1; i>=0; i--){
-      if(digits[i] < 9){
+  for(let i=digits.length-1; i>=0; i--){
+    if(digits[i] < 9){
         digits[i] = digits[i] + 1
         return digits
-      }else{
-        digits[i] = 0
-      }
-    }
+    }else digits[i] = 0
+        
+}
 
-    return [1, ...digits]
+return [1, ...digits]
 };
 
-// plusOne([4,3,2,9])
-// plue([4,3,2,0])
-// plusOne([8, 9])
-plusOne([6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3])
+console.log(plusOne([6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3]))
 
 
 // #array #math
-// @easy
+// ##easy
