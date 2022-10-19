@@ -49,6 +49,24 @@ var climbStairs1 = function(n) {
 // console.log(climbStairs1(3))
 
 
+// Approach: dynamic-programming (save last two steps)
+// Time complexity = O(n)
+// Space complexity = O(1)
+var climbStairs = function(n) {
+    let a = 0
+    let b = 1
+    let c
+
+    for(let i=2; i<=n; i++){
+        c = a + b
+        a = b
+        b = c
+    }
+
+    return b
+};
+
+console.log(climbStairs(4))
 
 
 
