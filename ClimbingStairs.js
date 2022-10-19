@@ -27,20 +27,31 @@
 
 // 1 <= n <= 45
 
-var climbStairs = function(n) {
-    let one = 1
-    let two = 1
-    
-    for(let i=1; i<n; i++){
-        temp = one
-        one = one + two
-        two = temp
+
+
+
+
+// Approach: memoization
+// Time complexity = O(n)
+// Space complexity = O(n)
+var climbStairs1 = function(n) {
+    const count = (stairs, cache) => {
+        if(stairs < 0) return 0
+        if(stairs === 0) return 1
+        if(cache[stairs]) return cache[stairs]
+        cache[stairs] = count(stairs - 1, cache) + count(stairs - 2, cache)
+        return cache[stairs]
     }
-    console.log(one)
-    return one
+
+    return count(n, [])
 };
 
-console.log(climbStairs(3))
+// console.log(climbStairs1(3))
+
+
+
+
+
 
 // #math #dynamic-programming #memoization
 // @easy
