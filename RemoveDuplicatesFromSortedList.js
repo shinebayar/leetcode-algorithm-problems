@@ -1,5 +1,7 @@
 // 83. Remove Duplicates from Sorted List
 
+// Easy like=6057 unlike=212
+
 // Given the head of a sorted linked list, delete all duplicates such that each element appears only once. Return the linked list sorted as well.
 
  
@@ -22,20 +24,7 @@
 // -100 <= Node.val <= 100
 // The list is guaranteed to be sorted in ascending order.
 
-var deleteDuplicates = function(head) {
-  cur = head
 
-    // continue loop untill cur happens to be null
-    while(cur){
-        // cur.next is exist and it has same value to cur
-        while(cur.next && cur.next.val == cur.val){
-            cur.next = cur.next.next
-        }
-        cur = cur.next
-    }
-    console.log(head)
-    return head
-};
 
 
 
@@ -126,6 +115,24 @@ class Node{
     }
 }
 
+
+
+
+// Time complexity = O(n) Because each node visited once even though we used nested loops
+// Space complexity = O(1) We don't need any extra memory
+var deleteDuplicates = function(head) {
+    let current = head
+    
+    while(current){
+        if(!current.next) break
+        if(current.val === current.next.val) current.next = current.next.next
+        else current = current.next
+    }
+    
+    return head
+};
+
+
 let list1 = new LinkedList()
 list1.append(1)
 list1.append(2)
@@ -134,11 +141,9 @@ list1.append(3)
 list1.append(3)
 list1.append(4)
 list1.append(4)
-console.log(list1)
+console.log('list1 :', list1)
 
-deleteDuplicates(list1)
+console.log('result: ', deleteDuplicates(list1))
 
 // #linked-list
 // @easy
-// Time complexity = O(n) Because each node visited once even though we used nested loops
-// Space complexity = O(1) We don't need any extra memory
