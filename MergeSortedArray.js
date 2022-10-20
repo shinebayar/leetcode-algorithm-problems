@@ -1,4 +1,5 @@
 // 88. Merge Sorted Array
+// Easy like=7939 unlike=698
 
 // You are given two integer arrays nums1 and nums2, sorted in non-decreasing order, and two integers m and n, representing the number of elements in nums1 and nums2 respectively.
 
@@ -40,29 +41,30 @@
 
 // Follow up: Can you come up with an algorithm that runs in O(m + n) time?
 
+
+
+// Approach: two-pointers technique or pattern
+// Time complexity = O(n)
+// Space complexity = O(1)
 var merge = function(nums1, m, nums2, n) {
-    last = m + n -1
     let first = m - 1
     let second = n - 1
-
-    while(second >= 0){
+    
+    for(let i=nums1.length-1; i>=0; i--){
+        if(second < 0) break
         if(nums1[first] > nums2[second]){
-            nums1[last] = nums1[first]
-            last--
+            nums1[i] = nums1[first]
             first--
         }else{
-            nums1[last] = nums2[second]
-            last--
+            nums1[i] = nums2[second]
             second--
         }
     }
-
+    
     return nums1
 };
 
 console.log(merge([1,2,3,4,5,0,0,0], 3, [2,5,6], 3))
 
 // #array #two-pointers #sorting
-// @easy
-// Time complexity = O(n)
-// Space complexity = O(1)
+// ##easy
