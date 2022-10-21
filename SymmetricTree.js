@@ -1,5 +1,7 @@
 // 101. Symmetric Tree
 
+// Easy like=11346 unlike=258
+
 // Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
 
  
@@ -24,24 +26,55 @@
 
 // Follow up: Could you solve it both recursively and iteratively?
 
-var isSymmetric = function(root) {
-    if(root === null) return true
 
-    return isSame(root.left, root.right)
+
+
+
+
+// Approach 1: DFS algorithm
+// Time complexity = O(n)
+// Space complexity = O(1) if we ignore the recursion stack which is the height of tree
+var isSymmetric1 = function(root) {
+    if(root === null) return true
+    
+    const check = (n1, n2) => {
+        if(n1 === null || n2 === null) return n1 === n2
+        if(n1.val !== n2.val) return false
+        return check(n1.left, n2.right) && check(n1.right, n2.left)
+    }
+    
+    return check(root.left, root.right)
 };
 
-const isSame = (tree1, tree2) => {
-    if(tree1 === null || tree2 === null) return tree1 === tree2
 
-    if(tree1.val !== tree2.val) return false
 
-    return isSame(tree1.left, tree2.right) && isSame(tree1.right, tree2.left)
-}
+
+// Approach 2: BFS algorithm (get each layer and check them)
+// Time complexity = O(n)
+// Space complexity = O(n)
+var isSymmetric2 = function(root) {
+    if(!root) return true
+	let queue = [root.left, root.right]
+	
+	while(queue.length){
+		let n1 = queue.pop()
+		let n2 = queue.pop()
+		
+		if(n1 === null && n2 === null) continue
+		if((n1 && n2 === null ) || (n1 === null && n2)) return false
+		if(n1.val !== n2.val) return false
+		
+		queue.push(n1.left, n2.right)
+		queue.push(n1.right, n2.left)
+	}
+	
+	return true
+};
 
 
 
 // #tree #depth-first-search #breadth-first-search #binary-tree
-// @easy
+// ##easy
 
 
 
@@ -253,4 +286,4 @@ console.log(bst)
 
 
 
-console.log('Answer is: ', isSymmetric(bst.root))
+console.log('Answer is: ', isSymmetric2(bst.root))

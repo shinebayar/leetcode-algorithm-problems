@@ -44,18 +44,17 @@
 // nums is sorted in non-decreasing order.
 
 
+
+// Approach: two pointer technique or pattern
+// Time complexity = O(n)
+// Space complexity = O(1)
 var removeDuplicates = function(nums) {
-    if(nums.length <= 1) return nums.length
-
-    let index = 1
-    for(let i=1; i<nums.length; i++){
-        if(nums[i] !== nums[i-1]){
-            nums[index] = nums[i]
-            index++
-        }
+    let p1 = 0
+    for(let p2=0; p2<nums.length; p2++){
+        if(nums[p2] !== nums[p2+1]) nums[p1++] = nums[p2]
     }
-
-    return index
+    
+    return p1
 };
 
 removeDuplicates([0,0,1,1,1,2,2,3,3,4])

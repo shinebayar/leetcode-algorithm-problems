@@ -27,47 +27,25 @@
 // s consists of only English letters and spaces ' '.
 // There will be at least one word in s.
 
+
+
+
+
+// Approach: math
+// Time complexity = O(n)
+// Space complexity = O(1)
 var lengthOfLastWord = function(s) {
-    word = ''
+    let count = 0
 
     for(let i=s.length-1; i>=0; i--){
-        if(s.charAt(i) != ' '){
-            word = word + s.charAt(i)
-        }else{
-            if(word.length > 0){
-                break
-            }
-        }
+        if(s[i] !== ' ') count++
+        else if(count > 0) break
     }
 
-    return word.length
+    return count
 };
 
-lengthOfLastWord("    ")
-lengthOfLastWord("   fly me   to   the moon  ")
-lengthOfLastWord("luffy is still joyboy")
-
-// Approach 1: Brute force
-// var lengthOfLastWord = function(s) {
-//     let arr = []
-//     word = ''
-//     s = s + ' '
-
-//     for(let i=0; i<s.length; i++){
-//         if(s.charAt(i) != ' '){
-//             word = word + s.charAt(i)
-//         }else{
-//             if(word.length > 0){
-//                 arr.push(word)
-//                 word = ''
-//             }
-//         }
-//     }
-
-//     console.log(arr)
-//     console.log(arr[arr.length-1].length)
-//     return arr[arr.length-1].length
-// };
+console.log(lengthOfLastWord("   fly me   to   the moon  "))
 
 
 // #string
