@@ -25,20 +25,24 @@
 // -100 <= Node.val <= 100
 
 
-// Approach 1: Recursion
-// Time: O(n)
-// Space: O(n) + callstack O(n)
+
+
+// Approach 1: recursion or dfs algorithm
+// Time complexity = O(n)
+// Space complexity = O(n)
 var inorderTraversal = function(root) {
     let res = []
-    const get = node => {
-        if(node === null) return
-        get(node.left)
+    
+    const helper = node => {
+        if(!node) return
+        
+        if(node.left) helper(node.left)
         res.push(node.val)
-        get(node.right)
+        if(node.right) helper(node.right)
     }
-
-    get(root)
-
+    
+    helper(root)
+    
     return res
 };
 
@@ -51,16 +55,16 @@ console.log(inorderTraversal([1,null,2,3]))
 var inorderTraversal2 = function(root) {
     let res = []
     let stack = []
-    cur = root
-    while(cur !== null || stack.length !== 0){
-        while(cur !== null){
-            console.log(cur.val)
-            stack.push(cur)
-            cur = cur.left
+
+    while(root || stack.length !== 0){
+        if(root){
+            stack.push(root)
+            root = root.left
+        }else{
+            stack.pop()
+            res.push(root.val)
+            root = root.right
         }
-        cur = stack.pop()
-        res.push(cur)
-        cur = cur.right
     }
 
     return res
@@ -103,5 +107,4 @@ function findPredecessor(root){
 // console.log(inorderTraversal([1,null,2,3]))
 
 // #stack #tree #depth-first-search #binary-tree
-// Time complexity = 
-// Space complexity = 
+// ##easy
