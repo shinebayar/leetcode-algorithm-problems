@@ -1,4 +1,5 @@
 // 111. Minimum Depth of Binary Tree
+// Easy like=4976 unlike=1021
 
 // Given a binary tree, find its minimum depth.
 
@@ -43,17 +44,45 @@ function TreeNode(val, left, right){
     this.right = (right === undefined ? null : right)
 }
 
- var minDepth = function(root) {
-    if(!root) return 0
-    if(!root.left) return minDepth(root.right) + 1
-    if(!root.right) return minDepth(root.left) + 1
 
-    return Math.min(minDepth(root.left), minDepth(root.right)) + 1
+
+// Approach DFS algorithm
+// Time complexity = O(n)
+// Space complexity = O(1)
+var minDepth1 = function(root) {
+    if(!root) return 0
+    return 1 + Math.min(minDepth1(root.left), minDepth1(root.right))
 };
 
-console.log(minDepth([3,9,20,null,null,15,7]))
+console.log(minDepth1([3,9,20,null,null,15,7]))
+
+
+
+
+// Approach DFS algorithm
+// Time complexity = O(n)
+// Space complexity = O(1)
+var minDepth = function(root) {
+    if(!root) return 0
+
+    let queue = [root]
+    let level = 0
+
+    while(queue.length){
+        let len = queue.length
+        while(len--){
+            let node = queue.shift()
+            if(node.left) queue.push(node.left)
+            if(node.right) queue.push(node.right)
+            if(!node.left && !node.right) return level + 1
+        }
+        level++
+    }
+
+    return level
+}
+
+
 
 // #tree #depth-first-search #breadth-first-search #binary-tree
 // ##easy
-// Time complexity = O()
-// Space complexity = O()
