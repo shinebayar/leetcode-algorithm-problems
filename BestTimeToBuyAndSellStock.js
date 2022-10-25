@@ -30,54 +30,49 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function(prices) {
+
+
+
+// Time complexity = O(n)
+// Space complexity = O(1)
+var maxProfit1 = function(prices) {
     let buyPrice = Infinity
     let profit = 0
     
     for(let price of prices){
-        if(price < buyPrice){
-            buyPrice = price
-        } else if(price - buyPrice > profit){
-            profit = price - buyPrice
-        }
+        if(price < buyPrice) buyPrice = price
+        else if(price - buyPrice > profit) profit = price - buyPrice
     }
     
     return profit
 };
 
+// console.log(maxProfit1([7,1,5,3,6,4]))
+
+
+
+
+// Approach: dynamic-programming
+// Time complexity = O(n)
+// Space complexity = O(1)
+var maxProfit = function(prices) {
+    dp = new Array(prices.length) // initializing the dp table
+    dp[0] = [prices[0], 0] // filling the the first dp table --> low_price = prices[0] max_profit=0
+    let min_price = max_profit = 0
+
+    for(let i=1; i<prices.length){
+        min_price = Math.min(dp[i-1][0], prices[i])
+        max_price = Math.max(dp[i-1][1], prices[i] - dp[i-1][0])
+        dp[i] = [min_price, max_profit]
+    }
+
+    return dp[n-1][1]
+}
+
 console.log(maxProfit([7,1,5,3,6,4]))
+
+
+
 
 // #array #dynamic-programming
 // ##easy
-
-// Time complexity = O(n)
-// Space complexity = O(1)
-
-
-// Little bit different approach
-// var maxProfit = function(prices) {
-//     let buy, sell = 0
-    
-//     for(let i=0; i<prices.length; i++){
-//         if(prices[i] < prices[i+1]){
-//             if(prices[i] > buy){
-//                 buy = prices[i]
-//             }
-//             if(prices[i+1] > sell && prices[i+1] <= prices.length){
-//                 sell = prices[i+1]
-//             }
-//         }else{
-//             if(prices[i] < buy){
-//                 buy = prices[i]
-//             }
-            
-//             if(prices[i+1] > sell && prices[i+1] <= prices.length){
-//                 sell = prices[i+1]
-//             }
-//         }
-//     }
-    
-//     console.log(sell - buy)
-    
-//     return ((sell - buy) > 0 ? (sell - buy) : 0)
-// };
