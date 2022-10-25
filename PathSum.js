@@ -46,15 +46,65 @@
  * @param {number} targetSum
  * @return {boolean}
  */
-var hasPathSum = function(root, targetSum) {
-    if(!root) return false
-    if(root.val === targetSum && root.left === null && root.right === null) return true
 
-    return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val)
+
+
+// Approach: DFS algorithm
+// Time complexity = O(n)
+// Space complexity = O(logn) we need that for the recursion stack
+var hasPathSum1 = function(root, targetSum) {
+    let hasTarget = false
+
+    const helper = (node, sum) => {
+        if(!node) return
+
+        sum += node.val
+
+        if(sum === targetSum && !node.left && !node.right){
+            hasTarget = true
+            return
+        }else{
+            if(node.left) helper(node.left, sum)
+            if(node.right) helper(node.right, sum)
+        }
+    }
+
+    helper(root, 0)
+
+    return hasTarget
 };
 
-console.log(hasPathSum())
+console.log(hasPathSum1())
+
+
+
+
+// Approach: BFS algorithm
+// Time complexity = O(n)
+// Space complexity = O(n)
+var hasPathSum = function(root, targetSum) {
+    if(!root) return false
+
+    let queue = [root]
+
+    while(queue.length){
+        let node = queue.shift()
+        
+        if(node.left){
+            node.left.val += node.val
+            queue.push(node.left)
+        }
+
+        if(node.right){
+            node.right.val += node.val
+            queue.push(node.right)
+        }
+
+        if(!node.left && !node.right && node.val === targetSum) return true
+    }
+
+    return false
+}
 
 // #tree #depth-first-search #breadth-first-search #binary-tree
-// Time complexity = O(n) -- The worst case is that we bisit all nodes of this tree
-// Space complexity = O(h) or O(log n) -- be the deepest path of the tree so length of this path
+// ##easy
