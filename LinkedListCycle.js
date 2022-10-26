@@ -47,23 +47,45 @@
  * @param {ListNode} head
  * @return {boolean}
  */
- var hasCycle = function(head) {
-    let step1, step2 = head
 
-    while(step2 !== null && step2.next !== null){
-        step2 = step2.next.next
-        step1 = step1.next
 
-        if(step2 === step1) return true
+
+
+// Approach: Implementing hash-map DS by JS object
+// Time complexity = O(n)
+// Space complexity = O(1)
+var hasCycle = function(head) {
+    let map = new Map()
+
+    while(head){
+        if(map.has(head)) return true
+        else map.get(head, 1)
+        head = head.next
+    }
+}
+
+
+
+
+// Approach: two-pointers technique
+// Time complexity = O(n)
+// Space complexity = O(1)
+var hasCycle = function(head) {
+    let fastPointer = head
+    let slowPointer = head
+
+    while(fastPointer !== null && fastPointer.next !== null){
+        fastPointer = fastPointer.next.next
+        slowPointer = slowPointer.next
+        if(fastPointer === slowPointer) return true
     }
 
     return false
-};
+}
 
 hasCycle([3,2,0,-4], 1)
 
-// Time complexity = O(n)
-// Space complexity = O(1)
+
 
 // #hash-table #linked-list #two-pointer
 // ##easy
