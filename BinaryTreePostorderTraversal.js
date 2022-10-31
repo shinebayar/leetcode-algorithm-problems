@@ -73,29 +73,39 @@ function TreeNode(val, left, right) {
 
 postorderTraversal1([1,null,2,3])
 
-// Approach 2: iteratively
+
+
+
+
+// Approach 2: stack DS
 // Time complexity: O(n)
 // Space complexity: O(n)
 var postorderTraversal = function(root) {
-    
-    let res = [];
-    let stack = [];
-    let lastNodeVisited = null;
-    while (stack.length || node !== null) {
-        if (node !== null) {
-            stack.push(node);
-            node = node.left;
-        } else {
-            let peekNode = stack[stack.length - 1];
-            if (peekNode.right !== null && peekNode.right !== lastNodeVisited) {
-                node = peekNode.right;
-            } else {
-                res.push(peekNode.val);
-                lastNodeVisited = stack.pop();
+    if(!root) return []
+
+    let res = []
+    let stack = [root]
+
+    while(stack.length){
+        let node = stack[stack.length - 1]
+
+        if(!node.left && !node.right){
+            res.push(node.val)
+            stack.pop()
+        }else{
+            if(node.right){
+                stack.push(node.right)
+                node.right = null
+            }
+            if(node.left){
+                stack.push(node.left)
+                node.left = null
             }
         }
     }
-    return res;
+
+    return res
+
 };
 
 postorderTraversal([1,null,2,3])
