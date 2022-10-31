@@ -80,7 +80,12 @@ function ListNode(val) {
  * @return {ListNode}
  */
 
- var getIntersectionNode1 = function(headA, headB) {
+
+
+// Approaoch: two-pointers technique
+// Time complexity = O(m+n)
+// Space complexity = O(1)
+var getIntersectionNode1 = function(headA, headB) {
      let pointer1 = headA
      let pointer2 = headB
 
@@ -96,6 +101,27 @@ function ListNode(val) {
 
      return pointer1
 };
+
+
+
+// Approaoch: hash-table DS
+// Time complexity = O(m+n)
+// Space complexity = O(n)
+var getIntersectionNode = function(headA, headB) {
+    let map = new Map()
+
+    while(headA){
+        map.set(haedA)
+        headA = headA.next
+    }
+
+    while(headB){
+        if(map.has(headB)) return headB
+        headB = headB.next
+    }
+
+    return null
+}
 
 // #hash-table #linked-list #two-pointers
 // ##easy
