@@ -1,5 +1,7 @@
 // 118. Pascal's Triangle
 
+// Easy like=8250 unlike=273
+
 // Given an integer numRows, return the first numRows of Pascal's triangle.
 
 // In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
@@ -25,32 +27,29 @@
  * @param {number} numRows
  * @return {number[][]}
  */
- var generate = function(numRows) {
-    let res = []
-    let temp = []
 
-    if(numRows >= 1){
-        temp.push(1)
-        res.push(temp)
-        temp = []
-    }
-    
-    for(let i=1; i<numRows; i++){
-        for(let k=0; k<=i; k++){
-            temp.push( (res[i-1][k-1] ? res[i-1][k-1] : 0) + (res[i-1][k] ? res[i-1][k] : 0) )
-        }
-        res.push(temp)
-        temp = []
-    }
 
-    console.log(res)
-    return res
-};
 
-generate(5)
 
-// #array #dynamic-programming
-// ##easy
 
 // Time complexity = O(n*n) -- n different rows and each row has n elements
 // Space complexity = O(n*n) -- if you count output array as extra space
+var generate = function(numRows) {
+    let res = []
+
+    for(let i=0; i<numRows; i++){
+        res[i] = []
+        res[i][0] = res[i][i] = 1
+        for(let j=1; j<i; j++){
+            res[i][j] = res[i-1][j-1]  + res[i-1][j]
+        }
+    }
+
+    return res
+};
+
+console.log(generate(5))
+
+
+// #array #dynamic-programming
+// ##easy

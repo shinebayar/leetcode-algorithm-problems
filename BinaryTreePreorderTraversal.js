@@ -44,18 +44,21 @@
  * @return {number[]}
  */
 
-// Approach 1: Using recursion
+
+
+
+// Approach: DFS algorithm
 // Time complexity = O(n)
 // Space complexity = O(n)
  var preorderTraversal1 = function(root) {
     let res = []
     
     const check = node => {
-        if(node === null) return
+        if(!node) return
         else res.push(node.val)
         
-        if(node.left !== null) check(node.left)
-        if(node.right !== null) check(node.right)
+        if(node.left) check(node.left)
+        if(node.right) check(node.right)
     }
     
     check(root)
@@ -63,34 +66,41 @@
     return res
 };
 
-// preorderTraversal1([1,null,2,3])
+
+// Approach: DFS algorithm
+// Time complexity = O(n)
+// Space complexity = O(n)
+var preorderTraversal2 = function(root, res = []) {
+    if(!root) return []
+    else res.push(root.val)
+        
+    if(root.left) preorderTraversal(root.left, res)
+    if(root.right) preorderTraversal(root.right, res)
+    
+    return res
+};
+
+// preorderTraversal2([1,null,2,3])
 
 
-// Approach 2: Using stack
+// Approach: stack DS
 // Time complexity = O(n)
 // Space complexity = O(n)
 var preorderTraversal = function(root) {
-    
     if(!root) return []
     
     let stack = [root]
     let res = []
-    
+
     while(stack.length){
-        
         let node = stack.pop()
+
         res.push(node.val)
 
         if(node.right) stack.push(node.right)
         if(node.left) stack.push(node.left)
-        
-        console.log('node: ', node)
-        console.log('stack: ', stack)
-        console.log('res: ', res)
-        console.log('stack.length: ', stack.length)
-        console.log('--------------------')
     }
-    
+
     return res
 };
 

@@ -1,4 +1,5 @@
 // 108. Convert Sorted Array to Binary Search Tree
+// Easy like=8413 unlike=422
 
 // Given an integer array nums where the elements are sorted in ascending order, convert it to a height-balanced binary search tree.
 
@@ -46,37 +47,29 @@ function TreeNode(val, left, right){
     this.left = (left === undefined ? null : left)
     this.right = (right === undefined ? null : right)
 }
- var sortedArrayToBST = function(nums) {
-    // error check
-    if(!nums || nums.length < 1) return null
 
-    // create recursive function
-    const checkRecursively = (nums, start, end) => {
-        // base case
-        if(start > end) return null
 
-        // recursive case // find the middle
-        const middle = Math.floor((start + end) / 2)
 
-        // instantiate new TreeNode make it the root
-        const root = new TreeNode(nums[middle])
-
-        // create the left branch
-        root.left = checkRecursively(nums, start, middle - 1)
-
-        // create the right branch
-        root.right = checkRecursively(nums, middle + 1, end)
-
+// Time complexity = O(n) because recursive we were going through every single value
+// Memory complexity = O(1)
+var sortedArrayToBST = function(nums) {
+    
+    const helper = (left, right) => {
+        if(left > right) return null
+        
+        let mid = Math.floor((left + right) / 2)
+        
+        let root = new TreeNode(nums[mid])
+        root.left = helper(left, mid - 1)
+        root.right = helper(mid + 1, right)
+        
         return root
     }
-
-    return checkRecursively(nums, 0, nums.length - 1)
+    
+    return helper(0, nums.length - 1)
 };
 
 console.log(sortedArrayToBST([-10, -3, 0, 5, 9  ]))
 
 // #array #divide-and-conquer #tree #binary-search-tree #binary-tree
-// @easy
-
-// Time complexity = O(n) because recursive we were going through every single value
-// Memory complexity = O(log n) becase balanced tree
+// ##easy
