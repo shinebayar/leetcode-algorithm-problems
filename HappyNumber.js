@@ -45,9 +45,11 @@
  * @return {boolean}
  */
 
-// Time complexity = O(n)
+
+// Approach: hash-table DS, and recursive
+// Time complexity = O(n*log(n))
 // Space complexity = O(n)
-var isHappy = function(n) {
+var isHappy1 = function(n) {
     let map = new Map()
     let ans = true
     
@@ -74,7 +76,34 @@ var isHappy = function(n) {
 
 };
 
-console.log(isHappy(19))
+
+
+
+// Approach: hash-table DS
+// Time complexity = O(n*log(n))
+// Space complexity = O(n)
+var isHappy2 = function(n) {
+    
+    const happySum = a => {
+        a = a.toString()
+        let tmp = 0
+        for(let i=0; i<a.length; i++) tmp += Math.pow(a[i], 2)
+        return tmp
+    }
+    
+    let map = new Map()
+    
+    while(n !== 1){
+        let sum = happySum(n)
+        if(map.has(sum)) return false
+        if(sum === 1) return true
+        map.set(sum, sum)
+        n = sum
+        
+    }
+    
+    return true
+};
 
 
 // #hash-table #math #two-pointers
