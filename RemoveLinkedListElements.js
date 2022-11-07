@@ -52,41 +52,62 @@ function ListNode(val, next) {
     this.val = (val===undefined ? 0 : val)
     this.next = (next===undefined ? null : next)
 }
-    
-// Approach 1: using iteration
-// Time complexity = O(n)
-// Space complexity = O(1)
-var removeElements1 = function(head, val) {
-    let dummy = new ListNode(-1)
-    dummy.next = head
-    let current = dummy
 
-    while(current.next !== null){
-        if(current.next.val === val) {
-            current.next = current.next.next
-        }else {
-            current = current.next
-        }
-    }
 
-    return dummy.next
-};
 
-console.log(removeElements1([1,2,6,3,4,5,6], 6))
-
-// Approach 2: using recursion
+// Approach 1: Iterative Solution without using a Previous Pointer
 // Time complexity = O(n)
 // Space complexity = O(1)
 var removeElements = function(head, val) {
-    // Base case, if head is null, nothing to do
-    if(!head) return head
+    let dummy = new ListNode()
+    dummy.next = head
+    let cur = dummy
 
-    // if head's value is equal to val, delete it and run the function over the next elements
-    if(head.val === val) return removeElements(head.next, val)
+    while(cur.next){
+        if(cur.next.val === val) cur.next = cur.next.next
+        else cur = cur.next
+    }
 
-    // Otherwise, preserve head, but run the removal logic over the next elements
-    head.next = removeElements(head.next, val)
-};
+    return dummy.next
+}
+
+
+
+// Approach 2: Iterative Solution using a Previous Pointer
+// Time complexity = O(n)
+// Space complexity = O(1)
+var removeElements = function(head, val) {
+    let dummy = new ListNode()
+    dummy.next = head
+    let prev = dummy
+    let cur = head
+
+    while(cur){
+        if(cur.val === val) prev.next = cur.next
+        else prev = cur
+        cur = cur.next
+    }
+
+    return dummy.head
+}
+
+
+// Approach 3: Recursion
+// Time complexity = O(n)
+// Space complexity = O(n)
+var removeElements = function(head, val) {
+    if (!head) return head 
+    
+    if (head.val === val) {
+        head = removeElements(head.next,val)
+    } else {
+        head.next = removeElements(head.next,val)
+    }
+    
+    return head
+}
+
+
 
 // #linked-list #recursion
 // ##easy
