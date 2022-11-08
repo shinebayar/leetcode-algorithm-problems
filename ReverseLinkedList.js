@@ -71,21 +71,20 @@
 
 // Approach 2: using recursion
 // Time complexity = O(n)
-// Space complexity = O(1)n 
-
+// Space complexity = O(n) 
 var reverseList = function(head) {
-    let prev = null
-    let curr = head
+    
+    const helper = (cur, prev) => {
+        if(!cur) return prev
 
-    while(curr){
-        let saveNext = curr.next
-        curr.next = prev // to point
-        prev = curr // step 1 to prev
-        curr = saveNext // step 1 to curr
+        let next = cur.next
+        cur.next = prev
+
+        return helper(next, cur)
     }
 
-    return prev
- }
+    return helper(head, null)
+}
 
  reverseList([1,2,3,4,5])
 
