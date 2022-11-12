@@ -51,6 +51,33 @@
  * @param {function} isBadVersion()
  * @return {function}
  */
+
+
+
+
+// Approach: Brute force
+// Time complexity = O(n)
+// Space complexity = O(1)
+var solution = function(isBadVersion) {
+    /**
+     * @param {integer} n Total versions
+     * @return {integer} The first bad version
+     */
+    return function(n) {
+        for(let i=1; i<=n; i++){
+            if(isBadVersion(i)) return i
+        }
+        
+        return -1
+    };
+};
+
+
+
+
+// Approach: binary-search algorithm
+// Time complexity = O(n)
+// Space complexity = O(1)
  var solution = function(isBadVersion) {
     /**
      * @param {integer} n Total versions

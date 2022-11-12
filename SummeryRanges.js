@@ -54,14 +54,19 @@
  */
 var summaryRanges = function(nums) {
     let res = []
-
-    for(let i=0, j=0; j<nums.length; j++){
-        if(j+1 < nums.length && nums[j] + 1 === nums[j+1]) continue
-
-        if(i===j) res.push('' + nums[i])
-        else res.push(nums[i] + '->' + nums[j])
+    
+    for(let j=0, i=0; i<nums.length; i++){
+        if(nums[i] + 1 === nums[i+1]){
+            j++
+            continue
+        }
         
-        i = j + 1
+        if(j !== 0) {
+            res.push(nums[i-j] + '->' + nums[i])
+            j = 0
+        }else{
+            res.push('' + nums[i])
+        }
     }
     
     return res

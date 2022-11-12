@@ -79,7 +79,7 @@ var isPalindrome2 = function(head) {
 
 // Approach 2: recursion
 // Time complexity = O(n)
-// Space complexity = O(n)
+// Space complexity = O(n) if Function Call Stack size is considered, otherwise O(1)
 var isPalindrome3 = function(head) {
     let cur = head
     let res = true
