@@ -46,17 +46,23 @@
  * @param {number[]} nums
  */
 
+
+
+
+
+
+
+// Approach: prefix-sum-array
+// Time complexity = O(n)
+// Space complexity = O(1)
+
 // This is constructor function
 var NumArray = function(nums) {
-    this.prefixSum = []
-    let tmp = 0
+    this.nums = nums
 
     for(let i=0; i<nums.length; i++){
-        tmp += nums[i]
-        this.prefixSum[i] = tmp
+        nums[i] = (nums[i-1] || 0) + nums[i]
     }
-
-    console.log('New array prefix sum: ', this.prefixSum)
 };
 
 /** 
@@ -65,7 +71,7 @@ var NumArray = function(nums) {
  * @return {number}
  */
 NumArray.prototype.sumRange = function(left, right) {
-    return this.prefixSum[right] - (this.prefixSum[left - 1] || 0)
+    return this.nums[right] - (this.nums[left - 1] || 0)
 };
 
 /** 

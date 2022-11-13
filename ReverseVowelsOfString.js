@@ -36,34 +36,30 @@
  */
 
 
+
+// Approach: two-pointers technique
+// Time complexity = O(n)
+// Space complexity = O(n)
 var reverseVowels = function(s) {
-
-    const isVowel = val => { 
-        return 'aeiou'.includes(val.toLowerCase()) 
-    }
-
+    const isVowel = vowel => { return 'aeiou'.includes(vowel.toLowerCase()) }
+    
     s = s.split('')
-    let start = 0
-    let end = s.length - 1
-
-    while(start < end){
-        if( isVowel(s[start]) && isVowel(s[end]) ){
-                let tmp = s[start]
-                s[start] = s[end]
-                s[end] = tmp
-                start++
-                end--
-        }else if( isVowel(s[start]) ){
-            end--
-        }else if( isVowel(s[end]) ){
-            start++
-        }else{
-            start++
-            end--
+    let i = 0
+    let j = s.length - 1
+    
+    while(i < j){
+        if(!isVowel(s[i])) i++
+        else if(!isVowel(s[j])) j--
+        else{
+            let tmp = s[i]
+            s[i] = s[j]
+            s[j] = tmp
+            i++
+            j--
         }
     }
-
-    return s.join('') 
+    
+    return s.join('')
     
 };
 

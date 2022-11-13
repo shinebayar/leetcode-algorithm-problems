@@ -49,17 +49,17 @@
 // Time complexity = O(n)
 // Space complexity = O(n)
 var wordPattern = function(pattern, s) {
-    let patternToStr = {}
-    let strToPattern = {}
+    let patternToStr = new Map()
+    let strToPattern = new Map()
     s = s.split(' ')
-
-    if(s.length !== pattern.length) return false
-
+    
+    if(pattern.length !== s.length) return false
+    
     for(let i=0; i<pattern.length; i++){
-        if( s[i] !== patternToStr[pattern[i]] && patternToStr[pattern[i]] !== undefined ) return false
-        if( pattern[i] !== strToPattern[s[i]] && strToPattern[s[i]] !== undefined ) return false
-        patternToStr[pattern[i]] = s[i]
-        strToPattern[s[i]] = pattern[i]
+        patternToStr.set(pattern[i], patternToStr.get(pattern[i]) || s[i])
+        strToPattern.set(s[i], strToPattern.get(s[i]) || pattern[i])
+        if(pattern[i] !== strToPattern.get(s[i])) return false
+        if(s[i] !== patternToStr.get(pattern[i])) return false
     }
     
     return true
