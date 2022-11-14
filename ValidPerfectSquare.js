@@ -40,21 +40,8 @@
 // Time complexity = O(n)
 // Space complexity = O(1)
 var isPerfectSquare1 = function(num) {
-    // let n = 1
-    // let j = 0
-    
-    // while( n < num ){
-    //     console.log(j, n)
-    //     n = j + 1
-    //     j++
-    //     n = n * n
-        
-    // }
-    
-    // return n === num
-
-
     var sum = 0;
+    
     for(let i = 1; i <= num; i += 2){
         console.log(i, sum)
         sum += i;
@@ -87,6 +74,55 @@ var isPerfectSquare2 = function(num) {
 };
 
 console.log(isPerfectSquare2(65))
+
+
+
+
+
+// Approach: recursion on simple math
+// Time complexity = O(n)
+// Space complexity = O(1)
+var isPerfectSquare = function(num) {
+    if(num === 1) return true
+
+    let ans = Math.floor(num / 2)
+
+    const helper = (n) => {
+        if(n * n === num) return true
+        if(n < 1) return false
+        return helper(n - 1)
+    }
+
+    return helper(ans)
+}
+
+
+
+
+
+// Approach: recursion on binary search
+// Time complexity = O(n)
+// Space complexity = O(1)
+var isPerfectSquare = function(num) {
+    if(num === 1) return true
+
+    const helper = (num, left, right) => {
+        if(left > right) return false
+
+        let mid = Math.floor((left + right) / 2)
+
+        if(mid * mid === num) return true
+
+        if(mid * mid < num) helper(num, mid + 1, right)
+        else helper(num, left, mid - 1)
+    }
+
+    return helper(num, 1, Math.floor(num / 2))
+}
+
+
+
+
 
 
 // #math #binary-search
