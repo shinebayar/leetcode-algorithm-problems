@@ -102,37 +102,40 @@ var intersect2 = function(nums1, nums2) {
 
 
 // Approach 3: Using binary search algorithm on sorted arrays
+// second binary-search start => left index should start from previously left + 1
+// because we include duplicates
 // Time complexity = O(n2)
 // Space complexity = O(n)
 var intersect3 = function(nums1, nums2) {
-
-    const binarySearch = target => {
-        let l = 0, r = nums2.length-1
-        while(l < r){
-            let mid = l + Math.floor((r - l) / 2)
-            if(nums2[mid] < target){
-                l = mid + 1
-            }else{
-                r = mid
-            }
+    nums1 = nums1.sort((a, b) => a - b)
+    nums2 = nums2.sort((a, b) => a - b)
+    
+    const binarySearch = (left, right, target) => {
+        while(left < right){
+            let mid = Math.floor((left + right) / 2)
+            if(nums1[mid] === target) right = mid
+            else if(nums1[mid] > target) right = mid
+            else left = mid + 1
         }
-        if(nums2[l] == target){
-            nums2[l] = -Infinity
-            return true
+        if(0 <= left && nums1[left] === target){
+            return left
         }
-        return false
+        return -1
     }
-
-    nums1.sort((a,b)=>a-b) 
-    nums2.sort((a,b)=>a-b)
-    let ans=[]
-
-    for(let i=0; i<nums1.length; i++){
-        if(binarySearch(nums1[i])){
-			ans.push(nums1[i])
-		}
+    
+    let res = []
+    let left = 0 
+    let right = nums1.length - 1
+    
+    for(let i=0; i<nums2.length; i++){
+        let index = binarySearch(left, right, nums2[i])
+        if(index !== -1){
+            res.push(nums2[i])
+            left =  index + 1
+        }
     }
-    return ans
+    
+    return res
 };
 
 console.log(intersect3(
