@@ -49,19 +49,19 @@
 // Time complexity = O(n)
 // Space complexity = O(n)
 var findTheDifference1 = function(s, t) {
-    let map = new Map()
-    
-    for(let i=0; i<t.length; i++){
-        if(map.has(t[i])) map.set(t[i], map.get(t[i]) + 1)
-        else map.set(t[i], 1)
-    }
+   let map = new Map()
     
     for(let i=0; i<s.length; i++){
-        if(map.has(s[i]) && map.get(s[i]) === 1) map.delete(s[i])
-        else if(map.has(s[i]) && map.get(s[i]) > 1) map.set(s[i], map.get(s[i]) -1)
+        map.set(s[i], map.get(s[i]) + 1 || 1)
     }
     
-    return Array.from(map)[0][0]
+    for(let i=0; i<t.length; i++){
+        if(! map.has(t[i])) return t[i]
+        else{
+            if(map.get(t[i]) === 1) map.delete(t[i])
+            else map.set(t[i], map.get(t[i]) - 1)
+        }
+    }
 };
 
 // console.log(findTheDifference1('abcd', 'abcde'))
