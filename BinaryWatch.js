@@ -67,5 +67,51 @@ console.log(readBinaryWatch(1))
 
 
 
+
+
+// Approach: backtrack
+// Time complexity = O(n)
+// Space complexity = O(n)
+var readBinaryWatch = function(turnedOn) {
+    let res = []
+    
+    // range 0-3 are hours, range 4-9 are minutes
+    let arr = [1, 2, 4, 8, 1, 2, 4, 8, 16, 32]
+    
+    backtrack(arr, 0, 0, 0, turnedOn, res)
+    
+    return res
+};
+
+var backtrack = function(arr, position, hours, minutes, limit, res){
+    // when limit reaches to the zero, store hours and minutes into result list
+    if(limit === 0){
+        // during recursion we might get 4 + 8 = 12 hours which we must skip because max hour value could be 11
+        if(hours <= 11 && minutes <= 59){
+            let str = ''
+            str = str + hours + ':' + (minutes <= 9 ? '0' + minutes : minutes)
+            res.push(str)
+        }
+    }
+    
+    // standart backtracking solution add new value do recursion and then remove it
+    for(let i=position; i<arr.length; i++){
+        if(isHour(i)) hours += arr[i]
+        else minutes += arr[i]
+        
+        backtrack(arr, i+1, hours, minutes, limit-1, res)
+        
+        if(isHour(i)) hours -= arr[i]
+        else minutes -= arr[i]
+    }
+    
+}
+    
+var isHour = function(position){
+    return position >= 0 && position <= 3
+}
+
+
+
 // #backtracking #bit-manipulation
 // ##easy
