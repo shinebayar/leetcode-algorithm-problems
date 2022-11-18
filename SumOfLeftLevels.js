@@ -51,16 +51,16 @@
  var sumOfLeftLeaves = function(root) {
     let sum = 0
     
-    const recur = (node, isLeft) => {
-        if(node === null) return
+    const helper = (node, isLeft) => {
+        if(!node) return
 
-        if(node.left) recur(node.left, true)
-        if(node.right) recur(node.right, false)
+        if(node.left) helper(node.left, true)
+        if(node.right) helper(node.right, false)
 
         if(isLeft && !node.left && !node.right) sum += node.val
     }
     
-    recur(root, false)
+    helper(root, false)
     
     return sum
 };
@@ -73,10 +73,9 @@
 var sumOfLeftLeaves = function(root) {
     let sum = 0
     let queue = [root]
-    let node
 
     while(queue.length){
-        node = queue.shift()
+        let node = queue.shift()
 
         if(node.left){
             if(!node.left.left && !node.left.right) sum += node.left.val
