@@ -42,15 +42,12 @@
 // Space complexity = O(1)
 var countSegments = function(s) {
     let count = 0
-    let beginingLetter
     
-    (s[0] !== ' ' &&  s.length !== 0) ? beginingLetter = true : beginingLetter = false
-    
-    for(let i=0; i<s.length; i++){
-        if(s[i] === ' ' && s[i+1] !== ' ' && s[i+1] !== undefined) count++
+    for(let i=s.length-1; i>=0; i--){
+        if(s[i] !== ' ' && (s[i+1] === ' ' || s[i+1] === undefined)) count++
     }
     
-    return beginingLetter ? count + 1 : count
+    return count
 };
 
 console.log(countSegments("Hello, my name is John"))
