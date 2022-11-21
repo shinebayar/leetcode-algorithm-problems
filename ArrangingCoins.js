@@ -40,26 +40,45 @@
 
 
 // Approach: Using math
-// Time complexity = O(n)
+// Time complexity = O(sqrt(n))
 // Space complexity = O(1)
-var arrangeCoins = function(n) {
-    let res = 0
+var arrangeCoins1 = function(n) {
+    let row = 1
     
     while(n > 0){
-        if(res === 0){
-            n--
-            res++
-        }else{
-            n = n - (res + 1)
-            res++
-        }
-        
+        row++
+        n = n - row
     }
     
-    return n === 0 ? res : res - 1
+    return row - 1
 };
 
-console.log(arrangeCoins(8))
+console.log(arrangeCoins1(8))
+
+
+
+
+// Approach: binary-search algorithm
+// Time complexity = O(log(n))
+// Space complexity = O(1
+var arrangeCoins = function(n) {
+    let left = 1
+    let right = n
+    let res = 0
+    
+    while(left <= right){
+        let mid = Math.floor((left + right) / 2)
+        let coins = (mid / 2) * (mid + 1)
+        if(coins > n){
+            right = mid - 1    
+        }else{
+            left = mid + 1
+            res = Math.max(mid , res)
+        }
+    }
+    
+    return res
+};
 
 
 
