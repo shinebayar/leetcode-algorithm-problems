@@ -35,17 +35,23 @@
  */
 
 
+// Approach: math
 // Time complexity = O(n)
 // Space complexity = O(1)
 var findMaxConsecutiveOnes = function(nums) {
-    let max = tmp = 0
+    let res = 0
+    let tmp = 0
     
     for(let i=0; i<nums.length; i++){
-        max = Math.max(max, tmp += nums[i])
-        if(!nums[i]) tmp = 0
+        if(nums[i] === 0){
+            res = Math.max(res, tmp)    
+            tmp = 0
+        }else{
+            tmp++
+        }
     }
     
-    return max
+    return Math.max(tmp, res)
 };
 
 console.log(findMaxConsecutiveOnes([1,1,0,1,1,1]))
