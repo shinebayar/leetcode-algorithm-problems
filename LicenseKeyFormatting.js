@@ -45,23 +45,22 @@
 
 // Approach: math
 // Time complexity = O(n)
-// Space complexity = O(n)
+// Space complexity = O(1)
 var licenseKeyFormatting = function(s, k) {
-    let res = ''
+    let license = ''
     let count = 0
     
-    for(let i=s.length-1; i>=0; i--) {
-        if(count <= k && s[i] !== '-') {
-            res = s[i] + res
-            count++
+    for(let i=s.length-1; i>=0; i--){
+        if(s[i] === '-') continue
+        if(count === k){
+            license = '-' + license
+            count = 0    
         }
-        if(count === k && i-1 >= 0){
-            count = 0 
-            res = '-' + res
-        }
+        license = s[i] + license
+        count++    
     }
     
-    return res[0] === '-' ? res.slice(1).toUpperCase() : res.toUpperCase()
+    return license.toUpperCase()
 };
 
 console.log(licenseKeyFormatting("--a-a-a-a--",2))
