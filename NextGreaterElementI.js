@@ -47,26 +47,25 @@
 // Time complexity = O(n2)
 // Space complexity = O(n)
 var nextGreaterElement1 = function(nums1, nums2) {
-    let res = []
-    let tmp = 0
+    let ans = new Array(nums1.length)
+    
+    const helper = (k, num) => {
+        for(let i=k; i<nums2.length; i++){
+            if(num < nums2[i]) return nums2[i]
+        }
+        return -1
+    }
     
     for(let i=0; i<nums1.length; i++){
         for(let j=0; j<nums2.length; j++){
-            if(nums1[i] === nums2[j]){
-                for(let k=j; k<nums2.length; k++){
-                    if(nums2[j] < nums2[k+1]){
-                        tmp = nums2[k+1]
-                        res.push(tmp)
-                        break
-                    }
-                }
-                tmp === 0 ? res.push(-1) : tmp = 0
+            if(nums1[i] === nums2[j]) {
+                ans[i] = helper(j+1, nums1[i])
                 break
             }
         }
     }
     
-    return res
+    return ans
 };
 
 // console.log(nextGreaterElement1([1,3,5,2,4], [6,5,4,3,2,1,7]))
@@ -101,5 +100,34 @@ console.log(nextGreaterElement([1,3,5,2,4], [6,5,4,3,2,1,7]))
 
 
 
-// #array
-// ##easy #hash-table #stack #monotoic-stack
+// Approach: using stack, hash-map DS
+// Time complexity = O(m+n)
+// Space complexity = O(1)
+var nextGreaterElement = function(nums1, nums2) {
+    let map = new Map()
+    let stack = []
+    
+    for(let i=0; i<nums2.length; i++){
+        let cur = nums2[i]
+        
+        while(cur > stack[stack.length-1]){
+            let popped = stack.pop()
+            map.set(popped, cur)
+        }
+        
+        stack.push(cur)
+    }
+    
+    let ans = []
+    
+    for(let n of nums1){
+        map.has(n) ? ans.push(map.get(n)) : ans.push(-1)
+    }
+    
+    return ans
+}
+
+
+
+// #array #hash-table #stack #monotoic-stack
+// ##easy 
