@@ -113,6 +113,23 @@ var removeDuplicates = function(nums) {
 
 
 
+// Approach: two-pointers technique
+// Time complexity = O(n)
+// Space complexity = O(1)
+var removeDuplicates = function(nums) {
+    let i = 0
+    let j = 0
+
+    for(; i < nums.length; i++){
+        if(nums[i] !== nums[i + 2]){
+            nums[j] = nums[i]
+            j++
+        }
+    }
+
+    return j
+}
+
 
 
 
