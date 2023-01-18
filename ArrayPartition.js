@@ -53,7 +53,7 @@ var arrayPairSum = function(nums) {
     let sum = 0
     
     for(let i=0; i<=nums.length; i=i+2){
-        sum += Math.min(nums[i], nums[i+1])
+        sum += nums[i]
     }
     
     return sum
