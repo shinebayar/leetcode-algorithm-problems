@@ -106,5 +106,31 @@ var isHappy2 = function(n) {
 };
 
 
+
+// Approach: Floyd's cycle detection algorithm or fast and slow two-pointers
+// Time complexity = O(log(n))
+// Space complexity = O(1)
+var isHappy3 = function(n) {
+    const next = n => {
+        let sum = 0
+        while(n !== 0){
+            sum += (n % 10) * (n % 10)
+            n = Math.floor(n / 10)
+        }
+        return sum
+    }
+
+    let tortoise = n
+    let hare = next(n)
+
+    while(tortoise !== hare){
+        tortoise = next(tortoise)
+        hare = next(next(hare))
+    }
+
+    return tortoise === 1
+};
+
+
 // #hash-table #math #two-pointers
 // ##easy
