@@ -25,42 +25,31 @@
 // 0 <= Node.val <= 9
 // It is guaranteed that the list represents a number that does not have leading zeros.
 
-var addTwoNumbers = function (l1, l2) {
 
-    let head = new ListNode(0);
-    let node = head;
-    let carry = 0;
+
+// Approach: math
+// Time complexity = O(n)
+// Space complexity = O(n)
+var addTwoNumbers = function (l1, l2) {
+    let dummy = new ListNode(0)
+    let node = dummy, carry = 0, val1, val2
 
     while(l1 || l2){
-        let l1_val = l1 ? l1.val : 0;
-        let l2_val = l2 ? l2.val : 0;
+        val1 = l1 ? l1.val : 0
+        val2 = l2 ? l2.val : 0
+        sum = carry + val1 + val2
 
-        let sum = l1_val + l2_val + carry;
-        carry = 0;
-        let new_val = sum;
+        if(l1) l1 = l1.next
+        if(l2) l2 = l2.next
 
-        if(sum>9){
-            new_val = sum % 10;
-            carry = 1;
-        }
-
-        node.next = new ListNode(new_val);
-        node = node.next;
-
-        if(l1){
-            l1 = l1.next;
-        }
-
-        if(l2){
-            l2 = l2.next;
-        }
+        carry = Math.floor(sum / 10)
+        node.next = new ListNode(sum % 10)
+        node = node.next
     }
 
-    if(carry){
-        node.next = new ListNode(carry);
-    }
+    if(carry) node.next = new ListNode(carry)
 
-    return head.next;
+    return dummy.next
 }
 
 // addTwoNumbers([9,9,9,9,9,9,9], [9,9,9,9]);
