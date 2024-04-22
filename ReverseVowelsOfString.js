@@ -41,24 +41,20 @@
 // Time complexity = O(n)
 // Space complexity = O(n)
 var reverseVowels = function(s) {
-    const isVowel = vowel => { return 'aeiou'.includes(vowel.toLowerCase()) }
-    
+    const isVowel = vowel => 'aeiou'.includes(vowel.toLowerCase())
+    let i = 0, j = s.length - 1
     s = s.split('')
-    let i = 0
-    let j = s.length - 1
     
     while(i < j){
         if(!isVowel(s[i])) i++
         else if(!isVowel(s[j])) j--
         else{
-            let tmp = s[i]
-            s[i] = s[j]
-            s[j] = tmp
+            [s[i], s[j]] = [s[j], s[i]]
             i++
             j--
         }
     }
-    
+
     return s.join('')
     
 };
