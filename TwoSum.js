@@ -48,11 +48,11 @@ const TwoSum1 = (nums, target) => {
 // Time complexity = O(n)
 // Space complexity = O(n)
 const TwoSum = (nums, target) => {
-  let hash = {}
+  let map = new Map()
 
   for(let i=0; i<nums.length; i++){
-    if(hash[target - nums[i]] !== undefined) return [hash[target - nums[i]], i]
-    hash[nums[i]] = i
+      if(map.has(target - nums[i])) return [map.get(target - nums[i]), i]
+      map.set(nums[i], i)
   }
 }
 
