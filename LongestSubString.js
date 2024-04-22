@@ -25,24 +25,23 @@
 // 0 <= s.length <= 5 * 104
 // s consists of English letters, digits, symbols and spaces.
 
+
+
+// Approach: sliding window technique
+// Time complexity = O(n)
+// Space complexity = O(n)
 const LongestSubstring = s => {
+    let map = new Map(), max = 0, i = 0
 
-    let max = 0
-    let begin = 0
-    let map = {}
-    
-    for(let end=0; end<s.length; end++){
-        if(map[s[end]] !== undefined && map[s[end]] >= begin){
-            begin = map[s[end]] + 1
-        }
-
-        map[s[end]] = end
-        max = Math.max(max, end - begin + 1)
+    for(let j=0; j<s.length; j++){
+        if(map.has(s[j]) && map.get(s[j]) >= i) i = map.get(s[j]) + 1
+        map.set(s[j], j)
+        max = Math.max(max, j - i + 1)
     }
 
     return max
 }
 
 // LongestSubstring('bbbbb')
-LongestSubstring('pwwkew')
+LongestSubstring('abcabcdjj')
 // LongestSubstring('abcabcbb')
