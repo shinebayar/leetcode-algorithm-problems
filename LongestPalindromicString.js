@@ -21,28 +21,28 @@
 
 
 var longestPalindrome = function(s) {
-    if(s.length<2) return s
+    if(s.length < 2) return s
 
     let start = 0
     let maxLen = 1
 
-    function expandAroundCenter(left, right){
-        while(s[left] === s[right] && left >=0 && right < s.length){
+    const expandAroundCenter = (left, right) => {
+        while(s[left] === s[right] && left >= 0 && right < s.length){
             if(right - left + 1 > maxLen){
                 start = left
-                maxLen = right - left +1
+                maxLen = right - left + 1
             }
-            left -= 1
-            right += 1
+            left--
+            right++
         }
     }
 
     for(let i=0; i<s.length; i++){
-        expandAroundCenter(i-1, i+1)
-        expandAroundCenter(i, i+1)
+        expandAroundCenter(i - 1, i + 1)
+        expandAroundCenter(i, i + 1)
     }
 
-    return s.substring(start, start+maxLen)
+    return s.substring(start, start + maxLen)
 }
 
 // longestPalindrome('babad')
