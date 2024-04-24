@@ -74,6 +74,27 @@ var convert = function(s, numRows) {
 
 
 
+// Approach: math
+// Time complexity = O(n)
+// Space complexity = O(n)
+var convert = function(s, numRows) {
+    let res = '', increment
+
+    for(let row=0; row<numRows; row++){
+        increment = (numRows - 1) * 2
+        for(let i=row; i<s.length; i=i+increment){
+            res += s[i]
+            if(0 < row && i > numRows && i + increment - 2 * row < s.length){
+                res += s[i + increment - 2 * row]
+            }
+        }
+    }
+
+    return res
+
+};
+
+
 
 
 
