@@ -20,6 +20,10 @@
 // s consist of only digits and English letters.
 
 
+
+//Approach: two-pointers
+// Time complexity: O(2n) ~ O(n)
+// Space complexity: O(1)
 var longestPalindrome = function(s) {
     if(s.length < 2) return s
 
