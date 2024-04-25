@@ -44,5 +44,31 @@ var longestCommonPrefix = function(strs) {
 console.log(LongestCommonPrefix(["flower","flow","floght"]))
 
 
+
+
+
+// Approach: math
+// Time complexity = 0(n2)
+// Space complexity = O(1)
+var longestCommonPrefix = function(strs) {
+    let ans = '', current,  count = 0
+
+    for(let i=0; i<strs[0].length; i++){
+        current = strs[0][i]
+        for(let j=0; j<strs.length; j++){
+            if(strs[j][i] !== current) return ans
+            else count++
+        }
+        if(count === strs.length) ans += strs[count - 1][i]
+        count = 0
+    }
+
+    return ans
+};
+
+
+
+
+
 // #string
 // ##easy
