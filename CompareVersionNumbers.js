@@ -66,26 +66,26 @@
 // Time compleixty = O(m + n) ~ O(n)
 // Space complexity = O(1)
 var compareVersion = function(version1, version2) {
-    let i = 0, j = 0
+    let i = 0, j = 0, a = '', b = ''
 
     while(i < version1.length || j < version2.length){
-        let v1 = 0
-        while(version1[i] !== '.' && version1[i] !== undefined){
-            v1 = v1 * 10 + parseInt(version1[i])
+        a = ''
+        b = ''
+
+        while(version1[i] !== '.' && i < version1.length){
+            a += version1[i]
             i++
         }
-        
-        let v2 = 0
-        while(version2[j] !== '.' && version2[j] !== undefined){
-            v2 = v2 * 10 + parseInt(version2[j])
+        i++
+
+        while(version2[j] !== '.' && j < version2.length){
+            b += version2[j]
             j++
         }
-
-        if(v1 < v2) return -1
-        if(v1 > v2) return 1
-
-        i++
         j++
+        
+        if(Number(a) < Number(b)) return -1
+        if(Number(a) > Number(b)) return 1
     }
 
     return 0

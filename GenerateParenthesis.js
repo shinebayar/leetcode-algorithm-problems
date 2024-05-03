@@ -40,24 +40,17 @@
 var generateParenthesis = function(n) {
     let res = []
 
-    const recur = (str, open, close) => {
-        // close parenthesis cannot be more than open parenthesis at any given time to stay valid
-        if(open > close) return
-
-        // base case, now we have pairs of parenthesis
-        if(open === 0 && close === 0){
+    const backtrack = (str, open, close) =>{
+        if(open === n && close === n){
             res.push(str)
             return
         }
 
-        // Insert open parenthesis and search for the next valid insertion
-        if(open > 0) recur(`${str}(`, open - 1, close)
-
-        // Insert close parenthesis and search for the next valid insertion
-        if(close > 0) recur(`${str})`, open, close - 1)
+        if(open > close) backtrack(str + ')', open, close + 1)
+        if(open < n) backtrack(str + '(', open + 1, close)
     }
 
-    recur('', n, n)
+    backtrack('(', 1, 0)
 
     return res
 };

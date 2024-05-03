@@ -92,7 +92,7 @@ var removeNthFromEnd = function(head, n) {
 
 // Approach: two-pointers technique
 // Time complexity = O(n)
-// Space complexity = O(n)
+// Space complexity = O(1)
 var removeNthFromEnd = function(head, n) {
     let fast = head
     let slow = head

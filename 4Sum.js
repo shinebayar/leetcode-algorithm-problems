@@ -76,39 +76,32 @@ var fourSum = function(nums, target) {
 // Time complexity = O(n3)
 // Time complexity = O(n)
 var fourSum = function(nums, target) {
-    nums.sort((a, b) => (a - b))
-    let res = []
-    
-    const checkDuplicate = arr => {
-        for(let i=0; i<res.length; i++){
-            if(res[i].join() === arr.join()) return false
-        }
-        return true
-    }
-    
-    for(let i=0; i<nums.length-1; i++){   
-        for(let j=i+1; j<nums.length-1; j++){
-            let left = j + 1
-            let right = nums.length - 1
+    if(nums.length < 3) return []
+    nums = nums.sort((a, b) => a - b)
+    let ans = [], left, right, total
+
+    for(let i=0; i<nums.length-3; i++){
+        for(let j=i+1; j<nums.length-2; j++){
+            left = j + 1
+            right = nums.length - 1
             while(left < right){
-                let sum = nums[i] + nums[j] + nums[left] + nums[right]
-                if(sum > target) right--
-                else if(sum < target) left++
+                total = nums[i] + nums[j] + nums[left] + nums[right]
+                if(total < target) left++
+                else if(total > target) right--
                 else{
-                    if(checkDuplicate([nums[i], nums[j], nums[left], nums[right]])){
-                        res.push([nums[i], nums[j], nums[left], nums[right]])    
-                    }
-                    while(left < right && nums[left] === nums[left + 1]) left++
-                    while(left < right && nums[right] === nums[right - 1]) right--
+                    ans.push([nums[i], nums[j], nums[left], nums[right]]) 
+                    while(nums[left] === nums[left + 1]) left++
+                    while(nums[right] === nums[right - 1]) right--
                     left++
                     right--
-                } 
-                
+                }
             }
+            while(nums[j] === nums[j+1]) j++
         }
+        while(nums[i] === nums[i+1]) i++
     }
-    
-    return res
+
+    return ans
 };
 
 

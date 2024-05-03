@@ -23,21 +23,30 @@
 // 0 <= digits.length <= 4
 // digits[i] is a digit in the range ['2', '9'].
 
-const L = {'2':"abc",'3':"def",'4':"ghi",'5':"jkl",
-     '6':"mno",'7':"pqrs",'8':"tuv",'9':"wxyz"}
 
+
+
+// Approach: backtrack algorithm using recursive function
+// Time complexity = O(3^n) or O(4^n)
+// Space complexity = O(n)
 var letterCombinations = function(D) {
-    let len = D.length, ans = []
-    if (!len) return []
-    const bfs = (pos, str) => {
-        if (pos === len) ans.push(str)
-        else {
-            let letters = L[D[pos]]
-            for (let i = 0; i < letters.length; i++)
-                bfs(pos+1,str+letters[i])
+    if(digits.length === 0) return []
+    let map = new Map([['2','abc'],['3','def'],['4','ghi'],['5','jkl'],['6','mno'],['7','pqrs'],['8','tuv'],['9','wxyz'],])
+    let ans = []
+
+    const backtrack = (index, curStr) => {
+        if(curStr.length === digits.length){
+            ans.push(curStr)
+            return
+        }
+        
+        for(let letter of map.get(digits[index])){
+            backtrack(index + 1, curStr + letter)
         }
     }
-    bfs(0,"")
+
+    backtrack(0, '')
+
     return ans
 };
 
